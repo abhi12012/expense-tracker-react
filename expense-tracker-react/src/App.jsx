@@ -5,6 +5,7 @@ function App() {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
   const [transactions, setTransactions] = useState([]);
+  const [isExpense, setIsExpense] = useState(false);
 
   function addTransaction() {
     // Validation
@@ -14,10 +15,11 @@ function App() {
     }
 
     const newTransaction = {
-      id: Date.now(),
-      description,
-      amount,
-    };
+  id: Date.now(),
+  description,
+  amount,
+  type: "income"
+}
 
     setTransactions([...transactions, newTransaction]);
 
@@ -43,6 +45,9 @@ function App() {
 
       <h2>Balance: ₹{balance}</h2>
 
+
+      
+
       <input
         type="text"
         placeholder="Description"
@@ -60,6 +65,24 @@ function App() {
         onChange={(e) => setAmount(Number(e.target.value))}
       />
 
+       <br />
+      <br />
+
+
+       <label>
+  <input
+    type="checkbox"
+    checked={isExpense}
+    onChange={(e) => setIsExpense(e.target.checked)}
+  />
+  Expense
+</label>
+
+
+<p>Expense: {isExpense.toString()}</p>
+
+
+
       <br />
       <br />
 
@@ -67,7 +90,14 @@ function App() {
         Add Transaction
       </button>
 
-      <hr />
+
+       <br />
+      <br />
+
+
+
+
+      
 
       {transactions.map((item) => (
         <div key={item.id}>
