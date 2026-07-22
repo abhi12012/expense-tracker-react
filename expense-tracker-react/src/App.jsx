@@ -14,6 +14,7 @@ function App() {
   type="text"
   placeholder="Description"
   value={description}
+  onChange={(e) => setDescription(e.target.value)}
 />
       <br /><br />
 
