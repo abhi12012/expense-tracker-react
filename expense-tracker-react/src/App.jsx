@@ -13,19 +13,23 @@ function App() {
       return;
     }
 
-    // New Transaction
     const newTransaction = {
       id: Date.now(),
-      description: description,
-      amount: amount,
+      description,
+      amount,
     };
 
-    // Add Transaction
     setTransactions([...transactions, newTransaction]);
 
     // Clear Inputs
     setDescription("");
     setAmount(0);
+  }
+
+  function deleteTransaction(id) {
+    setTransactions(
+      transactions.filter((item) => item.id !== id)
+    );
   }
 
   return (
@@ -59,17 +63,18 @@ function App() {
       <hr />
 
       {transactions.map((item) => (
-  <div>
-    <p>
-      {item.description} - ₹{item.amount}
-    </p>
+        <div key={item.id}>
+          <p>
+            {item.description} - ₹{item.amount}
+          </p>
 
-    <button>
-      Delete
-    </button>
+          <button onClick={() => deleteTransaction(item.id)}>
+            Delete
+          </button>
 
-  </div>
-))}
+          <hr />
+        </div>
+      ))}
     </>
   );
 }
