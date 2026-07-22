@@ -3,13 +3,17 @@ import './App.css'
 
 function App() {
 
-  let balance = 1000;
+  const [balance, setBalance] = useState(5000);
 
   return (
     <>
       <h1 className="title">Expense Tracker</h1>
       <h2>Balance : ₹ {balance}</h2>
-      <button>Add Transaction</button>
+
+      <button onClick={() => setBalance(6000)}>
+  Add Transaction
+  
+</button>
     </>
   )
 }
