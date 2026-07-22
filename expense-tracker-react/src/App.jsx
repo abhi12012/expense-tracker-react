@@ -14,12 +14,15 @@ function App() {
       return;
     }
 
-    const newTransaction = {
+
+const newTransaction = {
   id: Date.now(),
   description,
   amount,
-  type: "income"
-}
+  isExpense
+};
+
+
 
     setTransactions([...transactions, newTransaction]);
 
@@ -39,11 +42,32 @@ function App() {
   return total + item.amount;
 }, 0);
 
+
+
+const income = transactions
+  .filter((item) => item.isExpense === false)
+  .reduce((total, item) => total + item.amount, 0);
+
+
+  const expense = transactions
+  .filter((item) => item.isExpense === true)
+  .reduce((total, item) => total + item.amount, 0);
+
+
   return (
     <>
       <h1>Expense Tracker</h1>
 
       <h2>Balance: ₹{balance}</h2>
+
+
+      <h2>Income: ₹{income}</h2>
+
+
+
+    <h2>Expense: ₹{expense}</h2>
+
+
 
 
       
