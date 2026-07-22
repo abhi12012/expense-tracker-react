@@ -59,10 +59,17 @@ function App() {
       <hr />
 
       {transactions.map((item) => (
-        <p key={item.id}>
-          {item.description} - ₹{item.amount}
-        </p>
-      ))}
+  <div>
+    <p>
+      {item.description} - ₹{item.amount}
+    </p>
+
+    <button>
+      Delete
+    </button>
+
+  </div>
+))}
     </>
   );
 }
