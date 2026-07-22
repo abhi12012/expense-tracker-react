@@ -32,9 +32,16 @@ function App() {
     );
   }
 
+
+  const balance = transactions.reduce((total, item) => {
+  return total + item.amount;
+}, 0);
+
   return (
     <>
       <h1>Expense Tracker</h1>
+
+      <h2>Balance: ₹{balance}</h2>
 
       <input
         type="text"
