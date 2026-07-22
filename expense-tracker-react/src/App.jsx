@@ -7,7 +7,25 @@ function App() {
   const [transactions, setTransactions] = useState([]);
 
   function addTransaction() {
-    console.log("Add Transaction");
+    // Validation
+    if (description.trim() === "" || amount <= 0) {
+      alert("Please enter description and amount.");
+      return;
+    }
+
+    // New Transaction
+    const newTransaction = {
+      id: Date.now(),
+      description: description,
+      amount: amount,
+    };
+
+    // Add Transaction
+    setTransactions([...transactions, newTransaction]);
+
+    // Clear Inputs
+    setDescription("");
+    setAmount(0);
   }
 
   return (
@@ -38,13 +56,13 @@ function App() {
         Add Transaction
       </button>
 
-      <div>
-        {transactions.map((item) => (
-          <p key={item.id}>
-            {item.description} - ₹{item.amount}
-          </p>
-        ))}
-      </div>
+      <hr />
+
+      {transactions.map((item) => (
+        <p key={item.id}>
+          {item.description} - ₹{item.amount}
+        </p>
+      ))}
     </>
   );
 }
