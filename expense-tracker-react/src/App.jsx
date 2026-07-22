@@ -1,21 +1,28 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
 
-  const [balance, setBalance] = useState(5000);
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState(0);
 
   return (
     <>
-      <h1 className="title">Expense Tracker</h1>
-      <h2>Balance : ₹ {balance}</h2>
+      <h1>Expense Tracker</h1>
 
-     <button onClick={() => setBalance(balance + 1000)}>
-  Add Transaction
+      <input
+        type="text"
+        placeholder="Description"
+      />
 
-</button>
+      <br /><br />
+
+      <input
+        type="number"
+        placeholder="Amount"
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
