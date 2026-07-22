@@ -10,9 +10,9 @@ function App() {
       <h1 className="title">Expense Tracker</h1>
       <h2>Balance : ₹ {balance}</h2>
 
-      <button onClick={() => setBalance(6000)}>
+     <button onClick={() => setBalance(balance + 1000)}>
   Add Transaction
-  
+
 </button>
     </>
   )
