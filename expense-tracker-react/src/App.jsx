@@ -58,6 +58,7 @@ function App() {
     setAmount(0);
     setIsExpense(false);
     setCategory(item.category);
+    setDate(item.date);
 
     return;
   }
@@ -92,10 +93,12 @@ function App() {
 
 
    function editTransaction(item) {
-  setDescription(item.description);
+ setDescription(item.description);
   setAmount(item.amount);
   setEditingId(item.id);
-}
+  setCategory(item.category);
+  setDate(item.date);
+   }
 
 
 
@@ -111,6 +114,25 @@ function App() {
 
 
 
+
+const todayTransactions = transactions.filter((item) => {
+  const transactionDate = new Date(item.date);
+  const today = new Date();
+
+  return transactionDate.toDateString() === today.toDateString();
+});
+
+
+
+
+const todayIncome = todayTransactions
+  .filter((item) => item.isExpense === false)
+  .reduce((total, item) => total + item.amount, 0);
+
+
+
+
+
 const today = new Date();
 
 const thisMonthTransactions = transactions.filter((item) => {
@@ -121,6 +143,9 @@ const thisMonthTransactions = transactions.filter((item) => {
     transactionDate.getFullYear() === today.getFullYear()
   );
 });
+
+
+
 
 
 
@@ -205,6 +230,9 @@ const searchedTransactions = dateFilteredTransactions.filter((item) =>
       <h1>Expense Tracker</h1>
 
       <h2>Balance: ₹{balance}</h2>
+      <p>Total Transactions: {transactions.length}</p>
+      <p>Today's Transactions: {todayTransactions.length}</p>
+      <p>Today's Income: ₹{todayIncome}</p>
 
 
       <h2>Income: ₹{income}</h2>
@@ -338,7 +366,7 @@ const searchedTransactions = dateFilteredTransactions.filter((item) =>
   <option value="This Month">This Month</option>
 </select>
 
-<p>Date Filter: {dateFilter}</p>
+<p>Date Filter Value: {dateFilter}</p>
 
 <br /><br />
 
