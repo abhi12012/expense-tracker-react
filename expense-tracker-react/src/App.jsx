@@ -23,6 +23,7 @@ function App() {
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [date, setDate] = useState("");
   const [dateFilter, setDateFilter] = useState("All");
+  const [sortBy, setSortBy] = useState("default");
 
 
 
@@ -242,6 +243,19 @@ const searchedTransactions = dateFilteredTransactions.filter((item) =>
 
 
 
+const sortedTransactions = [...searchedTransactions];
+
+if (sortBy === "low") {
+  sortedTransactions.sort((a, b) => a.amount - b.amount);
+}
+
+if (sortBy === "high") {
+  sortedTransactions.sort((a, b) => b.amount - a.amount);
+}
+
+
+
+
 
   return (
     <>
@@ -416,8 +430,31 @@ const searchedTransactions = dateFilteredTransactions.filter((item) =>
 <p>Search: {search}</p>
 <br /><br />
 
+
+
+
+
+<select
+  value={sortBy}
+  onChange={(e) => setSortBy(e.target.value)}
+>
+  <option value="default">Default</option>
+  <option value="low">Low to High</option>
+  <option value="high">High to Low</option>
+</select>
+
+<p>Sort: {sortBy}</p>
+
+<br /><br />
+
+
+
+
+
       
-      {searchedTransactions.map((item) => (
+
+
+      {sortedTransactions.map((item) => (
         <div key={item.id}>
 
 
