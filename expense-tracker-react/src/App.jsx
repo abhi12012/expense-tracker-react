@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
+import TransactionForm from "./components/TransactionForm";
+
+
 
 function App() {
   const [description, setDescription] = useState("");
@@ -276,6 +279,19 @@ if (sortBy === "high") {
 
 
 
+
+
+
+
+
+<TransactionForm
+  description={description}
+  setDescription={setDescription}
+/>
+
+
+
+
       
       <p>Total Transactions: {transactions.length}</p>
       <p>Today's Transactions: {todayTransactions.length}</p>
@@ -337,12 +353,7 @@ if (sortBy === "high") {
 
 
 
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+      
 
       <br />
       <br />
