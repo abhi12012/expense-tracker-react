@@ -18,6 +18,7 @@ function App() {
   const [isExpense, setIsExpense] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
 
 
 
@@ -129,7 +130,9 @@ const filteredTransactions = transactions.filter((item) => {
   }
 });
 
-
+const searchedTransactions = filteredTransactions.filter((item) =>
+  item.description.toLowerCase().includes(search.toLowerCase())
+);
 
   return (
     <>
@@ -212,8 +215,18 @@ const filteredTransactions = transactions.filter((item) => {
 
 
 
+
+<input
+  type="text"
+  placeholder="Search Transaction"
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+/>
+<p>Search: {search}</p>
+<br /><br />
+
       
-      {filteredTransactions.map((item) => (
+      {searchedTransactions.map((item) => (
         <div key={item.id}>
 
 
