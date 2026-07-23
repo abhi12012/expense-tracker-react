@@ -131,6 +131,10 @@ const todayIncome = todayTransactions
 
 
 
+  const todayExpense = todayTransactions
+  .filter((item) => item.isExpense === true)
+  .reduce((total, item) => total + item.amount, 0);
+
 
 
 const today = new Date();
@@ -233,6 +237,7 @@ const searchedTransactions = dateFilteredTransactions.filter((item) =>
       <p>Total Transactions: {transactions.length}</p>
       <p>Today's Transactions: {todayTransactions.length}</p>
       <p>Today's Income: ₹{todayIncome}</p>
+      <p>Today's Expense: ₹{todayExpense}</p>
 
 
       <h2>Income: ₹{income}</h2>
