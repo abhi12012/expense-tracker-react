@@ -137,6 +137,20 @@ const todayIncome = todayTransactions
 
 
 
+
+
+  const categorySummary = transactions.reduce((acc, item) => {
+  if (!acc[item.category]) {
+    acc[item.category] = 0;
+  }
+
+  acc[item.category] += item.amount;
+
+  return acc;
+}, {});
+
+
+
 const today = new Date();
 
 const thisMonthTransactions = transactions.filter((item) => {
@@ -250,7 +264,23 @@ const searchedTransactions = dateFilteredTransactions.filter((item) =>
      <p>This Month Transactions: {thisMonthTransactions.length}</p>
 
 
-      
+      <h3>Category Summary</h3>
+
+{Object.entries(categorySummary).map(([category, total]) => (
+  <p key={category}>
+  {category === "Food" && "🍔"}
+  {category === "Travel" && "✈️"}
+  {category === "Salary" && "💰"}
+  {category === "Shopping" && "🛍️"}
+
+  {" "}{category}: ₹{total}
+</p>
+))}
+
+
+
+
+
 
       <input
         type="text"
