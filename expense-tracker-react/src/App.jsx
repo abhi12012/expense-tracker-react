@@ -23,34 +23,53 @@ function App() {
 
 
   function addTransaction() {
-    // Validation
-    if (description.trim() === "" || amount <= 0) {
-      alert("Please enter description and amount.");
-      return;
-    }
-
-
-
-
-
-const newTransaction = {
-  id: Date.now(),
-  description,
-  amount,
-  isExpense
-};
-
-
-
-    setTransactions([...transactions, newTransaction]);
-
-    // Clear Inputs
-    setDescription("");
-    setAmount(0);
+  // Validation
+  if (description.trim() === "" || amount <= 0) {
+    alert("Please enter description and amount.");
+    return;
   }
 
+  // Edit Mode
+  if (editingId !== null) {
+    setTransactions(
+      transactions.map((item) => {
+        if (item.id === editingId) {
+          return {
+            ...item,
+            description: description,
+            amount: amount,
+            isExpense: isExpense,
+          };
+        }
 
-  
+        return item;
+      })
+    );
+
+    setEditingId(null);
+
+    setDescription("");
+    setAmount(0);
+    setIsExpense(false);
+
+    return;
+  }
+
+  // Add New Transaction
+  const newTransaction = {
+    id: Date.now(),
+    description,
+    amount,
+    isExpense,
+  };
+
+  setTransactions([...transactions, newTransaction]);
+
+  // Clear Inputs
+  setDescription("");
+  setAmount(0);
+  setIsExpense(false);
+}
 
 
 
