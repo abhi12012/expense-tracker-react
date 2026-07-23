@@ -17,6 +17,7 @@ function App() {
 
   const [isExpense, setIsExpense] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [filter, setFilter] = useState("all");
 
 
 
@@ -110,6 +111,26 @@ const expense = transactions
   .reduce((total, item) => total + item.amount, 0);
 
 const balance = income - expense;
+
+
+
+
+const filteredTransactions = transactions.filter((item) => {
+  if (filter === "all") {
+    return true;
+  }
+
+  if (filter === "income") {
+    return item.isExpense === false;
+  }
+
+  if (filter === "expense") {
+    return item.isExpense === true;
+  }
+});
+
+
+
   return (
     <>
       <h1>Expense Tracker</h1>
@@ -176,10 +197,23 @@ const balance = income - expense;
       <br />
 
 
-      
+
+      <select
+  value={filter}
+  onChange={(e) => setFilter(e.target.value)}
+>
+  <option value="all">All</option>
+  <option value="income">Income</option>
+  <option value="expense">Expense</option>
+</select>
+<p>Filter: {filter}</p>
+
+<br /><br />
+
+
 
       
-      {transactions.map((item) => (
+      {filteredTransactions.map((item) => (
         <div key={item.id}>
 
 
