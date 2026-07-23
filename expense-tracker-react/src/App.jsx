@@ -110,6 +110,21 @@ function App() {
 
 
 
+
+const today = new Date();
+
+const thisMonthTransactions = transactions.filter((item) => {
+  const transactionDate = new Date(item.date);
+
+  return (
+    transactionDate.getMonth() === today.getMonth() &&
+    transactionDate.getFullYear() === today.getFullYear()
+  );
+});
+
+
+
+
   const income = transactions
   .filter((item) => item.isExpense === false)
   .reduce((total, item) => total + item.amount, 0);
@@ -198,7 +213,8 @@ const searchedTransactions = dateFilteredTransactions.filter((item) =>
 
     <h2>Expense: ₹{expense}</h2>
 
-   
+     
+     <p>This Month Transactions: {thisMonthTransactions.length}</p>
 
 
       
