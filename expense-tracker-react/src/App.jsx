@@ -19,6 +19,7 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("Food");
 
 
 
@@ -53,6 +54,7 @@ function App() {
     setDescription("");
     setAmount(0);
     setIsExpense(false);
+    setCategory(item.category);
 
     return;
   }
@@ -63,6 +65,7 @@ function App() {
     description,
     amount,
     isExpense,
+    category,
   };
 
   setTransactions([...transactions, newTransaction]);
@@ -174,6 +177,21 @@ const searchedTransactions = filteredTransactions.filter((item) =>
       <br />
 
 
+
+      <select
+  value={category}
+  onChange={(e) => setCategory(e.target.value)}
+>
+  <option value="Food">Food</option>
+  <option value="Travel">Travel</option>
+  <option value="Salary">Salary</option>
+  <option value="Shopping">Shopping</option>
+</select>
+<p>Category: {category}</p>
+<br /><br />
+
+
+
       
       <label>
   <input
@@ -231,8 +249,8 @@ const searchedTransactions = filteredTransactions.filter((item) =>
 
 
 
-          <p>
-  {item.isExpense ? "🔴 Expense" : "🟢 Income"} - {item.description} - ₹{item.amount}
+         <p>
+  {item.isExpense ? "🔴 Expense" : "🟢 Income"} - {item.description} - ₹{item.amount} - {item.category}
 </p>
 
 
