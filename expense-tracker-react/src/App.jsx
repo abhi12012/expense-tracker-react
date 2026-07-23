@@ -262,7 +262,7 @@ if (sortBy === "high") {
     <>
       <h1>Expense Tracker</h1>
 
-      <Dashboard />
+      <Dashboard name="Abhishek" />
 
       <h2>Balance: ₹{balance}</h2>
       <p>Total Transactions: {transactions.length}</p>
