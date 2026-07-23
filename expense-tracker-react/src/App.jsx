@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
@@ -50,6 +50,14 @@ const newTransaction = {
   }
 
 
+
+
+  useEffect(() => {
+  localStorage.setItem(
+    "transactions",
+    JSON.stringify(transactions)
+  );
+}, [transactions]);
 
 
 
@@ -133,10 +141,12 @@ const balance = income - expense;
       
       {transactions.map((item) => (
         <div key={item.id}>
-          
+
+
+
           <p>
-            {item.description} - ₹{item.amount}
-          </p>
+  {item.isExpense ? "🔴 Expense" : "🟢 Income"} - {item.description} - ₹{item.amount}
+</p>
 
 
 
