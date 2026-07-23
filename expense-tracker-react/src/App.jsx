@@ -4,7 +4,17 @@ import "./App.css";
 function App() {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
-  const [transactions, setTransactions] = useState([]);
+
+
+ const [transactions, setTransactions] = useState(() => {
+  const savedTransactions = localStorage.getItem("transactions");
+
+  return savedTransactions
+    ? JSON.parse(savedTransactions)
+    : [];
+});
+
+
   const [isExpense, setIsExpense] = useState(false);
 
 
@@ -51,6 +61,7 @@ const newTransaction = {
 
 
 
+ 
 
   useEffect(() => {
   localStorage.setItem(
