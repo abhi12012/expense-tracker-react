@@ -2,6 +2,30 @@
   color: blue;
 }
 
+button:hover {
+  background-color: blue;
+}
+
+
+.dashboard {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 10px;
+  width: 180px;
+  text-align: center;
+}
+
+button {
+  padding: 10px;
+}
+
 .dashboard {
   display: flex;
   gap: 20px;
