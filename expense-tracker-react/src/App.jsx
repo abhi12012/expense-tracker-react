@@ -151,9 +151,39 @@ const categoryFilteredTransactions = filteredTransactions.filter((item) => {
 
 
 
-const searchedTransactions = categoryFilteredTransactions.filter((item) =>
+
+const dateFilteredTransactions = categoryFilteredTransactions.filter((item) => {
+
+  if (dateFilter === "All") {
+    return true;
+  }
+
+  const transactionDate = new Date(item.date);
+  const today = new Date();
+
+  if (dateFilter === "Today") {
+    return transactionDate.toDateString() === today.toDateString();
+  }
+
+  if (dateFilter === "This Month") {
+    return (
+      transactionDate.getMonth() === today.getMonth() &&
+      transactionDate.getFullYear() === today.getFullYear()
+    );
+  }
+
+});
+
+
+
+
+const searchedTransactions = dateFilteredTransactions.filter((item) =>
   item.description.toLowerCase().includes(search.toLowerCase())
 );
+
+
+
+
 
   return (
     <>
