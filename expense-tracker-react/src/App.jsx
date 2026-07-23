@@ -7,12 +7,19 @@ function App() {
   const [transactions, setTransactions] = useState([]);
   const [isExpense, setIsExpense] = useState(false);
 
+
+
+
+
   function addTransaction() {
     // Validation
     if (description.trim() === "" || amount <= 0) {
       alert("Please enter description and amount.");
       return;
     }
+
+
+
 
 
 const newTransaction = {
@@ -31,6 +38,11 @@ const newTransaction = {
     setAmount(0);
   }
 
+
+  
+
+
+
   function deleteTransaction(id) {
     setTransactions(
       transactions.filter((item) => item.id !== id)
@@ -38,22 +50,18 @@ const newTransaction = {
   }
 
 
-  const balance = transactions.reduce((total, item) => {
-  return total + item.amount;
-}, 0);
 
 
 
-const income = transactions
+  const income = transactions
   .filter((item) => item.isExpense === false)
   .reduce((total, item) => total + item.amount, 0);
 
-
-  const expense = transactions
+const expense = transactions
   .filter((item) => item.isExpense === true)
   .reduce((total, item) => total + item.amount, 0);
 
-
+const balance = income - expense;
   return (
     <>
       <h1>Expense Tracker</h1>
@@ -67,7 +75,7 @@ const income = transactions
 
     <h2>Expense: ₹{expense}</h2>
 
-
+   
 
 
       
@@ -89,11 +97,13 @@ const income = transactions
         onChange={(e) => setAmount(Number(e.target.value))}
       />
 
+      
        <br />
       <br />
 
 
-       <label>
+      
+      <label>
   <input
     type="checkbox"
     checked={isExpense}
@@ -102,13 +112,12 @@ const income = transactions
   Expense
 </label>
 
+ <p>Expense: {isExpense.toString()}</p>
 
-<p>Expense: {isExpense.toString()}</p>
-
-
-
+<br />
       <br />
-      <br />
+
+
 
       <button onClick={addTransaction}>
         Add Transaction
@@ -119,23 +128,47 @@ const income = transactions
       <br />
 
 
-
-
       
 
+      
       {transactions.map((item) => (
         <div key={item.id}>
+          
           <p>
             {item.description} - ₹{item.amount}
           </p>
+
+
 
           <button onClick={() => deleteTransaction(item.id)}>
             Delete
           </button>
 
+
+
           <hr />
         </div>
       ))}
+       
+
+
+       
+
+
+
+
+
+
+      <br />
+      <br />
+
+      
+
+
+
+
+      
+
     </>
   );
 }
