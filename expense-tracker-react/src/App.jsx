@@ -20,6 +20,8 @@ function App() {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("Food");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [date, setDate] = useState("");
 
 
 
@@ -66,6 +68,7 @@ function App() {
     amount,
     isExpense,
     category,
+    date,
   };
 
   setTransactions([...transactions, newTransaction]);
@@ -133,7 +136,21 @@ const filteredTransactions = transactions.filter((item) => {
   }
 });
 
-const searchedTransactions = filteredTransactions.filter((item) =>
+
+
+const categoryFilteredTransactions = filteredTransactions.filter((item) => {
+  if (categoryFilter === "All") {
+    return true;
+  }
+
+  return item.category === categoryFilter;
+});
+
+
+
+
+
+const searchedTransactions = categoryFilteredTransactions.filter((item) =>
   item.description.toLowerCase().includes(search.toLowerCase())
 );
 
@@ -209,6 +226,19 @@ const searchedTransactions = filteredTransactions.filter((item) =>
 
 
 
+
+<input
+  type="date"
+  value={date}
+  onChange={(e) => setDate(e.target.value)}
+/>
+<p>Date: {date}</p>
+
+<br /><br />
+
+
+
+
       <button onClick={addTransaction}>
   {editingId ? "Update Transaction" : "Add Transaction"}
 </button>
@@ -233,6 +263,22 @@ const searchedTransactions = filteredTransactions.filter((item) =>
 
 
 
+<select
+  value={categoryFilter}
+  onChange={(e) => setCategoryFilter(e.target.value)}
+>
+  <option value="All">All Categories</option>
+  <option value="Food">Food</option>
+  <option value="Travel">Travel</option>
+  <option value="Salary">Salary</option>
+  <option value="Shopping">Shopping</option>
+</select>
+<p>Category Filter: {categoryFilter}</p>
+
+<br /><br />
+
+
+
 
 <input
   type="text"
@@ -248,9 +294,8 @@ const searchedTransactions = filteredTransactions.filter((item) =>
         <div key={item.id}>
 
 
-
-         <p>
-  {item.isExpense ? "🔴 Expense" : "🟢 Income"} - {item.description} - ₹{item.amount} - {item.category}
+<p>
+  {item.isExpense ? "🔴 Expense" : "🟢 Income"} - {item.description} - ₹{item.amount} - {item.category} - {item.date}
 </p>
 
 
