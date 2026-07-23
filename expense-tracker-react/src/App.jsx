@@ -287,8 +287,9 @@ if (sortBy === "high") {
 <TransactionForm
   description={description}
   setDescription={setDescription}
+  amount={amount}
+  setAmount={setAmount}
 />
-
 
 
 
@@ -358,16 +359,7 @@ if (sortBy === "high") {
       <br />
       <br />
 
-      <input
-        type="number"
-        placeholder="Amount"
-        value={amount}
-        onChange={(e) => setAmount(Number(e.target.value))}
-      />
-
       
-       <br />
-      <br />
 
 
 
