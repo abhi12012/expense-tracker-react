@@ -262,7 +262,19 @@ if (sortBy === "high") {
     <>
       <h1>Expense Tracker</h1>
 
-      <Dashboard name="Abhishek" />
+      
+
+      <Dashboard
+  name="Abhishek"
+  balance={balance}
+  income={income}
+  expense={expense}
+>
+  <h3>Welcome to Expense Tracker</h3>
+  <p>React Learning Day 🚀</p>
+</Dashboard>
+
+
 
       
       <p>Total Transactions: {transactions.length}</p>
