@@ -264,18 +264,18 @@ if (sortBy === "high") {
 
       <Dashboard name="Abhishek" />
 
-      <h2>Balance: ₹{balance}</h2>
+      
       <p>Total Transactions: {transactions.length}</p>
       <p>Today's Transactions: {todayTransactions.length}</p>
       <p>Today's Income: ₹{todayIncome}</p>
       <p>Today's Expense: ₹{todayExpense}</p>
 
 
-      <h2>Income: ₹{income}</h2>
+     
 
 
 
-    <h2>Expense: ₹{expense}</h2>
+    
 
      
      <p>This Month Transactions: {thisMonthTransactions.length}</p>
