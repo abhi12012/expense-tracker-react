@@ -16,6 +16,7 @@ function App() {
 
 
   const [isExpense, setIsExpense] = useState(false);
+  const [editingId, setEditingId] = useState(null);
 
 
 
@@ -62,9 +63,10 @@ const newTransaction = {
 
 
 
-    function editTransaction(item) {
+   function editTransaction(item) {
   setDescription(item.description);
   setAmount(item.amount);
+  setEditingId(item.id);
 }
 
 
@@ -147,8 +149,8 @@ const balance = income - expense;
 
 
       <button onClick={addTransaction}>
-        Add Transaction
-      </button>
+  {editingId ? "Update Transaction" : "Add Transaction"}
+</button>
 
 
        <br />
