@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const [description, setDescription] = useState("");
@@ -260,6 +261,8 @@ if (sortBy === "high") {
   return (
     <>
       <h1>Expense Tracker</h1>
+
+      <Dashboard />
 
       <h2>Balance: ₹{balance}</h2>
       <p>Total Transactions: {transactions.length}</p>
