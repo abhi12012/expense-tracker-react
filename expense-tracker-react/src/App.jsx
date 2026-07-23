@@ -61,6 +61,14 @@ const newTransaction = {
 
 
 
+
+    function editTransaction(item) {
+  setDescription(item.description);
+  setAmount(item.amount);
+}
+
+
+
  
 
   useEffect(() => {
@@ -160,6 +168,12 @@ const balance = income - expense;
 </p>
 
 
+        
+<button onClick={() => editTransaction(item)}>
+  Edit
+</button>
+
+    
 
           <button onClick={() => deleteTransaction(item.id)}>
             Delete
