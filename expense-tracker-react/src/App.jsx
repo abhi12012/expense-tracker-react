@@ -22,6 +22,7 @@ function App() {
   const [category, setCategory] = useState("Food");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [date, setDate] = useState("");
+  const [dateFilter, setDateFilter] = useState("All");
 
 
 
@@ -277,6 +278,23 @@ const searchedTransactions = categoryFilteredTransactions.filter((item) =>
 
 <br /><br />
 
+
+
+
+
+
+<select
+  value={dateFilter}
+  onChange={(e) => setDateFilter(e.target.value)}
+>
+  <option value="All">All Dates</option>
+  <option value="Today">Today</option>
+  <option value="This Month">This Month</option>
+</select>
+
+<p>Date Filter: {dateFilter}</p>
+
+<br /><br />
 
 
 
