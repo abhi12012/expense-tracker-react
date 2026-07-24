@@ -37,6 +37,12 @@ function App() {
 
   function clearForm() {
 
+    setDescription("");
+    setAmount(0);
+    setIsExpense(false);
+    setCategory("Food");
+    setDate("");
+
 }
 
 
@@ -67,11 +73,7 @@ function App() {
 
     setEditingId(null);
 
-    setDescription("");
-    setAmount(0);
-    setIsExpense(false);
-    setCategory(item.category);
-    setDate(item.date);
+    clearForm();
 
     return;
   }
@@ -89,9 +91,7 @@ function App() {
   setTransactions([...transactions, newTransaction]);
 
   // Clear Inputs
-  setDescription("");
-  setAmount(0);
-  setIsExpense(false);
+  clearForm();
 }
 
 
@@ -112,6 +112,7 @@ function App() {
   setEditingId(item.id);
   setCategory(item.category);
   setDate(item.date);
+  setIsExpense(item.isExpense);
    }
 
 
