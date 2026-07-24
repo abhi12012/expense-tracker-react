@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import TransactionForm from "./components/TransactionForm";
+import TransactionList from "./components/TransactionList";
 
 
 
@@ -282,6 +283,12 @@ if (sortBy === "high") {
 
 
 
+<TransactionList
+  searchedTransactions={searchedTransactions}
+/>
+
+
+
 
 
 <TransactionForm
@@ -289,6 +296,14 @@ if (sortBy === "high") {
   setDescription={setDescription}
   amount={amount}
   setAmount={setAmount}
+  category={category}
+  setCategory={setCategory}
+  date={date}
+  setDate={setDate}
+ isExpense={isExpense}
+  setIsExpense={setIsExpense}
+   addTransaction={addTransaction}
+  editingId={editingId}
 />
 
 
@@ -356,64 +371,11 @@ if (sortBy === "high") {
 
       
 
-      <br />
-      <br />
-
       
 
 
 
-      <select
-  value={category}
-  onChange={(e) => setCategory(e.target.value)}
->
-  <option value="Food">Food</option>
-  <option value="Travel">Travel</option>
-  <option value="Salary">Salary</option>
-  <option value="Shopping">Shopping</option>
-</select>
-<p>Category: {category}</p>
-<br /><br />
 
-
-
-      
-      <label>
-  <input
-    type="checkbox"
-    checked={isExpense}
-    onChange={(e) => setIsExpense(e.target.checked)}
-  />
-  Expense
-</label>
-
- <p>Expense: {isExpense.toString()}</p>
-
-<br />
-      <br />
-
-
-
-
-<input
-  type="date"
-  value={date}
-  onChange={(e) => setDate(e.target.value)}
-/>
-<p>Date: {date}</p>
-
-<br /><br />
-
-
-
-
-      <button onClick={addTransaction}>
-  {editingId ? "Update Transaction" : "Add Transaction"}
-</button>
-
-
-       <br />
-      <br />
 
 
 
