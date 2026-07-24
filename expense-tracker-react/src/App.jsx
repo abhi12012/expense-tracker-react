@@ -286,6 +286,8 @@ if (sortBy === "high") {
 <TransactionList
   sortedTransactions={sortedTransactions}
   deleteTransaction={deleteTransaction}
+  editTransaction={editTransaction}
+  
 />
 
 

@@ -1,6 +1,7 @@
 function TransactionList({
   sortedTransactions,
-   deleteTransaction
+   deleteTransaction,
+   editTransaction,
 }) {
   return (
     <>
@@ -13,6 +14,14 @@ function TransactionList({
     {item.isExpense ? "🔴 Expense" : "🟢 Income"} -{" "}
     {item.description} - ₹{item.amount} - {item.category} - {item.date}
   </p>
+
+
+
+   <button onClick={() => editTransaction(item)}>
+    Edit
+  </button>
+   
+
 
   <button onClick={() => deleteTransaction(item.id)}>
     Delete
