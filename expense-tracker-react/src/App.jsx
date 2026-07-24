@@ -29,6 +29,7 @@ function App() {
   const [date, setDate] = useState("");
   const [dateFilter, setDateFilter] = useState("All");
   const [sortBy, setSortBy] = useState("default");
+  const [descriptionError, setDescriptionError] = useState("");
 
 
 
@@ -36,10 +37,15 @@ function App() {
 
   function addTransaction() {
   // Validation
-  if (description.trim() === "" || amount <= 0) {
-    alert("Please enter description and amount.");
-    return;
-  }
+  if (description.trim() === "") {
+  alert("Please enter description");
+  return;
+}
+
+if (amount <= 0) {
+  alert("Amount must be greater than 0");
+  return;
+}
 
   // Edit Mode
   if (editingId !== null) {
@@ -99,6 +105,7 @@ function App() {
 
 
    function editTransaction(item) {
+    
  setDescription(item.description);
   setAmount(item.amount);
   setEditingId(item.id);
@@ -273,9 +280,11 @@ if (sortBy === "high") {
   balance={balance}
   income={income}
   expense={expense}
+  totalTransactions={transactions.length}
 >
   <h3>Welcome to Expense Tracker</h3>
   <p>React Learning Day 🚀</p>
+  
 </Dashboard>
 
 
@@ -462,32 +471,6 @@ if (sortBy === "high") {
       
 
 
-      {sortedTransactions.map((item) => (
-        <div key={item.id}>
-
-
-<p>
-  {item.isExpense ? "🔴 Expense" : "🟢 Income"} - {item.description} - ₹{item.amount} - {item.category} - {item.date}
-</p>
-
-
-        
-<button onClick={() => editTransaction(item)}>
-  Edit
-</button>
-
-    
-
-          <button onClick={() => deleteTransaction(item.id)}>
-            Delete
-          </button>
-
-
-
-          <hr />
-        </div>
-      ))}
-       
 
 
        
