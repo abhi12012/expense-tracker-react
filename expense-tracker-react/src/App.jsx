@@ -284,9 +284,9 @@ if (sortBy === "high") {
 
 
 <TransactionList
-  searchedTransactions={searchedTransactions}
+  sortedTransactions={sortedTransactions}
+  deleteTransaction={deleteTransaction}
 />
-
 
 
 

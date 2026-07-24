@@ -1,16 +1,23 @@
-function TransactionList({ searchedTransactions }) {
+function TransactionList({
+  sortedTransactions,
+   deleteTransaction
+}) {
   return (
     <>
       <h2>Transaction List</h2>
 
       <div>
-        {searchedTransactions.map((item) => (
+        {sortedTransactions.map((item) => (
           <div key={item.id}>
-            <p>
-              {item.isExpense ? "🔴 Expense" : "🟢 Income"} -{" "}
-              {item.description} - ₹{item.amount} - {item.category} - {item.date}
-            </p>
-          </div>
+  <p>
+    {item.isExpense ? "🔴 Expense" : "🟢 Income"} -{" "}
+    {item.description} - ₹{item.amount} - {item.category} - {item.date}
+  </p>
+
+  <button onClick={() => deleteTransaction(item.id)}>
+    Delete
+  </button>
+</div>
         ))}
       </div>
     </>
