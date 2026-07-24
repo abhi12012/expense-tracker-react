@@ -29,23 +29,24 @@ function App() {
   const [date, setDate] = useState("");
   const [dateFilter, setDateFilter] = useState("All");
   const [sortBy, setSortBy] = useState("default");
-  const [descriptionError, setDescriptionError] = useState("");
+  
 
 
+
+
+
+  function clearForm() {
+
+}
 
 
 
   function addTransaction() {
   // Validation
-  if (description.trim() === "") {
-  alert("Please enter description");
-  return;
-}
-
-if (amount <= 0) {
-  alert("Amount must be greater than 0");
-  return;
-}
+  if (description.trim() === "" || amount <= 0) {
+    alert("Please enter description and amount.");
+    return;
+  }
 
   // Edit Mode
   if (editingId !== null) {
