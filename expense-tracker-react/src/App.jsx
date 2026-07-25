@@ -47,6 +47,34 @@ function App() {
 
 
 
+
+function updateTransaction() {
+
+  setTransactions(
+    transactions.map((item) => {
+
+      if (item.id === editingId) {
+        return {
+          ...item,
+          description: description,
+          amount: amount,
+          isExpense: isExpense,
+          category: category,
+          date: date,
+        };
+      }
+
+      return item;
+
+    })
+  );
+
+  setEditingId(null);
+
+}
+
+
+
   function addTransaction() {
   // Validation
   if (description.trim() === "" || amount <= 0) {
@@ -54,29 +82,13 @@ function App() {
     return;
   }
 
+  
+
   // Edit Mode
   if (editingId !== null) {
-    setTransactions(
-      transactions.map((item) => {
-        if (item.id === editingId) {
-          return {
-            ...item,
-            description: description,
-            amount: amount,
-            isExpense: isExpense,
-          };
-        }
-
-        return item;
-      })
-    );
-
-    setEditingId(null);
-
-    clearForm();
-
-    return;
-  }
+  updateTransaction();
+  return;
+}
 
   // Add New Transaction
   const newTransaction = {
@@ -272,7 +284,9 @@ if (sortBy === "high") {
 
 
   return (
-    <>
+    
+
+    <div className="container">
       <h1>Expense Tracker</h1>
 
       
@@ -491,8 +505,8 @@ if (sortBy === "high") {
 
 
       
-
-    </>
+</div>
+    
   );
 }
 
