@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import TransactionForm from "./components/TransactionForm";
 import TransactionList from "./components/TransactionList";
+
 
 
 
@@ -29,6 +31,7 @@ function App() {
   const [date, setDate] = useState("");
   const [dateFilter, setDateFilter] = useState("All");
   const [sortBy, setSortBy] = useState("default");
+  const descriptionRef = useRef(null);
   
 
 
@@ -287,7 +290,7 @@ if (sortBy === "high") {
     
 
     <div className="container">
-      
+
       <h1>Expense Tracker</h1>
 
       

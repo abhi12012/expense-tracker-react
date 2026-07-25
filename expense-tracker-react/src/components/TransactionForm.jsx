@@ -10,7 +10,9 @@ setDate,
 isExpense,
 setIsExpense,
 addTransaction,
-  editingId
+  editingId,
+  descriptionRef,
+
 
 }) {
   return (
@@ -18,6 +20,7 @@ addTransaction,
       <h2>Transaction Form</h2>
 
       <input
+       ref={descriptionRef}
   type="text"
   placeholder="Description"
   value={description}
