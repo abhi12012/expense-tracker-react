@@ -287,6 +287,7 @@ if (sortBy === "high") {
     
 
     <div className="container">
+      
       <h1>Expense Tracker</h1>
 
       
