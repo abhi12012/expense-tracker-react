@@ -144,6 +144,15 @@ function updateTransaction() {
 
 
 
+useEffect(() => {
+  if (editingId !== null) {
+    descriptionRef.current.focus();
+  }
+}, [editingId]);
+
+
+
+
 
 const todayTransactions = transactions.filter((item) => {
   const transactionDate = new Date(item.date);
@@ -335,6 +344,7 @@ if (sortBy === "high") {
   setIsExpense={setIsExpense}
    addTransaction={addTransaction}
   editingId={editingId}
+  descriptionRef={descriptionRef}
 />
 
 
