@@ -46,6 +46,8 @@ function App() {
     setCategory("Food");
     setDate("");
 
+
+    descriptionRef.current.focus();
 }
 
 
