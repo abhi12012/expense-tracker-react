@@ -229,9 +229,17 @@ const thisMonthTransactions = transactions.filter((item) => {
 
 
 
-const expense = transactions
-  .filter((item) => item.isExpense === true)
-  .reduce((total, item) => total + item.amount, 0);
+const expense = useMemo(() => {
+
+  return transactions
+    .filter((item) => item.isExpense === true)
+    .reduce((total, item) => total + item.amount, 0);
+
+}, [transactions]);
+
+
+
+
 
 const balance = income - expense;
 
