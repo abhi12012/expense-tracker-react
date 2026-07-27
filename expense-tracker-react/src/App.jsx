@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 
 import "./App.css";
 import Dashboard from "./components/Dashboard";
@@ -218,9 +218,16 @@ const thisMonthTransactions = transactions.filter((item) => {
 
 
 
-  const income = transactions
-  .filter((item) => item.isExpense === false)
-  .reduce((total, item) => total + item.amount, 0);
+  const income = useMemo(() => {
+
+  return transactions
+    .filter((item) => item.isExpense === false)
+    .reduce((total, item) => total + item.amount, 0);
+
+}, [transactions]);
+
+
+
 
 const expense = transactions
   .filter((item) => item.isExpense === true)
