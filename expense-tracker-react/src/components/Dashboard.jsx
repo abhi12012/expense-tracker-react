@@ -1,6 +1,6 @@
 function Dashboard({ name, balance, income, expense, children,totalTransactions }) {
 
-    console.log("Dashboard Render");
+    
     
   return (
     <>
