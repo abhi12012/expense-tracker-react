@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-function useLocalStorage() {
+function useLocalStorage(key) {
 
-  const [transactions, setTransactions] = useState(() => {
-    const savedTransactions = localStorage.getItem("transactions");
+  const [value, setValue] = useState(() => {
+    const savedTransactions = localStorage.getItem(key);
 
     return savedTransactions
       ? JSON.parse(savedTransactions)
@@ -13,15 +13,15 @@ function useLocalStorage() {
 
   useEffect(() => {
     localStorage.setItem(
-      "transactions",
-      JSON.stringify(transactions)
+      key,
+      JSON.stringify(value)
     );
-  }, [transactions]);
+  }, [key, value]);
 
 
   return {
-    transactions,
-    setTransactions
+    value,
+    setValue
   };
 
 }

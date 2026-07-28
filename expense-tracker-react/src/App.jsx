@@ -14,10 +14,6 @@ function App() {
   const [amount, setAmount] = useState(0);
 
 
- const { transactions, setTransactions } = useLocalStorage();
-
-
-
   const [isExpense, setIsExpense] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -29,6 +25,12 @@ function App() {
   const [sortBy, setSortBy] = useState("default");
   const descriptionRef = useRef(null);
   
+
+
+
+
+
+  const { transactions, setTransactions } = useLocalStorage("transactions");
 
 
 
