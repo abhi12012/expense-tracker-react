@@ -1,7 +1,13 @@
-function Dashboard({ name, balance, income, expense, children,totalTransactions }) {
+import { useContext } from "react";
+import TransactionContext from "../context/TransactionContext";
 
-    
-    
+
+function Dashboard({ balance, income, expense, children, totalTransactions }) {
+
+  const { name } = useContext(TransactionContext);
+
+  console.log("Dashboard Render");
+
   return (
     <>
       <h2>Dashboard Component</h2>
