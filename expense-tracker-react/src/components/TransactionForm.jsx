@@ -24,10 +24,7 @@ addTransaction,
   type="text"
   placeholder="Description"
   value={description}
-  onChange={(e) => {
-  console.log("Typing:", e.target.value);
-  setDescription(e.target.value);
-}}
+  onChange={(e) => setDescription(e.target.value)}
 />
 
 
