@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 import "./App.css";
 import Dashboard from "./components/Dashboard";
@@ -13,14 +14,9 @@ function App() {
   const [amount, setAmount] = useState(0);
 
 
- const [transactions, setTransactions] = useState(() => {
-  const savedTransactions = localStorage.getItem("transactions");
+ const { transactions, setTransactions } = useLocalStorage();
 
-  return savedTransactions
-    ? JSON.parse(savedTransactions)
-    : [];
-});
-
+ 
 
   const [isExpense, setIsExpense] = useState(false);
   const [editingId, setEditingId] = useState(null);
