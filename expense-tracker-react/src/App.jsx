@@ -16,7 +16,7 @@ function App() {
 
  const { transactions, setTransactions } = useLocalStorage();
 
- 
+
 
   const [isExpense, setIsExpense] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -141,13 +141,7 @@ function updateTransaction() {
 
  
 
-  useEffect(() => {
-  localStorage.setItem(
-    "transactions",
-    JSON.stringify(transactions)
-  );
-}, [transactions]);
-
+  
 
 
 
