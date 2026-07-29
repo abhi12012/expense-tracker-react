@@ -325,7 +325,6 @@ if (sortBy === "high") {
       
 
       <Dashboard
-  name="Abhishek"
   balance={balance}
   income={income}
   expense={expense}
