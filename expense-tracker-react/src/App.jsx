@@ -34,8 +34,8 @@ function App() {
 
 
 
-  const { value: transactions, setValue: setTransactions } = useLocalStorage("transactions");
-
+  const { value: transactions, setValue: setTransactions } =
+  useLocalStorage("transactions");
 
 
 

@@ -8,9 +8,10 @@ import TransactionList from "../components/TransactionList";
 
 function Expense() {
 
-     const [transactions, setTransactions] =
-    useLocalStorage("transactions");
+     const { value: transactions, setValue: setTransactions } =
+  useLocalStorage("transactions");
 
+  
     const [description, setDescription] = useState("");
 
     const [amount, setAmount] = useState(0);
@@ -52,6 +53,13 @@ function addTransaction() {
   // Validation
   if (description.trim() === "" || amount <= 0) {
     alert("Please enter description and amount.");
+
+
+
+
+
+
+
     return;
   }
 
@@ -145,12 +153,75 @@ function editTransaction(item) {
 
 
 
-  return (
-    <div>
-      <h1>Expense Tracker Page</h1>
-      <p>Manage your transactions here</p>
-    </div>
-  );
-}
+const income = transactions
+  .filter((item) => item.isExpense === false)
+  .reduce((total, item) => total + Number(item.amount), 0);
 
+
+const expense = transactions
+  .filter((item) => item.isExpense === true)
+  .reduce((total, item) => total + Number(item.amount), 0);
+
+
+const balance = income - expense;
+
+
+
+
+
+
+
+
+  return (
+
+
+  <div className="container">
+
+    <h1>Expense Tracker</h1>
+
+    <Dashboard
+      balance={balance}
+      income={income}
+      expense={expense}
+      totalTransactions={transactions.length}
+    >
+      <h3>Welcome to Expense Tracker</h3>
+      <p>React Learning Day 🚀</p>
+    </Dashboard>
+
+
+    <TransactionForm
+      description={description}
+      setDescription={setDescription}
+
+      amount={amount}
+      setAmount={setAmount}
+
+      category={category}
+      setCategory={setCategory}
+
+      date={date}
+      setDate={setDate}
+
+      isExpense={isExpense}
+      setIsExpense={setIsExpense}
+
+      addTransaction={addTransaction}
+
+      editingId={editingId}
+
+      descriptionRef={descriptionRef}
+    />
+
+
+    <TransactionList
+      sortedTransactions={transactions}
+      deleteTransaction={deleteTransaction}
+      editTransaction={editTransaction}
+    />
+
+
+  </div>
+);
+}
 export default Expense;
