@@ -319,7 +319,6 @@ if (sortBy === "high") {
 
   return (
   <>
-
   
 
     <Routes>

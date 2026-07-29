@@ -111,6 +111,39 @@ function updateTransaction() {
 
 
 
+function deleteTransaction(id) {
+
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this transaction?"
+  );
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  setTransactions(
+    transactions.filter((item) => item.id !== id)
+  );
+}
+
+
+
+
+
+function editTransaction(item) {
+
+  setDescription(item.description);
+  setAmount(item.amount);
+  setEditingId(item.id);
+  setCategory(item.category);
+  setDate(item.date);
+  setIsExpense(item.isExpense);
+
+}
+
+
+
+
   return (
     <div>
       <h1>Expense Tracker Page</h1>
