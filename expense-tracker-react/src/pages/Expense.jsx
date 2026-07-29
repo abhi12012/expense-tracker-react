@@ -57,13 +57,14 @@ function addTransaction() {
 
   
 
-//   // Edit Mode
-//   if (editingId !== null) {
-//     updateTransaction();
-//     return;
-//   }
+if (editingId !== null) {
+  updateTransaction();
+  return;
+}
 
-  // Add New Transaction
+
+
+  
   const newTransaction = {
     id: Date.now(),
     description,
