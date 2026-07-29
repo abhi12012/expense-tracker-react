@@ -1,4 +1,6 @@
 
+import Expense from "./pages/Expense";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { useState, useEffect, useRef, useMemo } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -316,66 +318,64 @@ if (sortBy === "high") {
 
 
   return (
-    
+  <>
+
+  
+
+    <Routes>
+  <Route path="/" element={<Home />} />
+
+  <Route path="/expense" element={<Expense />} />
+
+</Routes>
+
+
+
 
     <div className="container">
 
-      <Home />
-
       <h1>Expense Tracker</h1>
 
-      
 
       <Dashboard
-  balance={balance}
-  income={income}
-  expense={expense}
-  totalTransactions={transactions.length}
->
-  <h3>Welcome to Expense Tracker</h3>
-  <p>React Learning Day 🚀</p>
-  
-</Dashboard>
+        balance={balance}
+        income={income}
+        expense={expense}
+        totalTransactions={transactions.length}
+      >
+        <h3>Welcome to Expense Tracker</h3>
+        <p>React Learning Day 🚀</p>
+      </Dashboard>
 
 
+      <TransactionList
+        sortedTransactions={sortedTransactions}
+        deleteTransaction={deleteTransaction}
+        editTransaction={editTransaction}
+      />
 
 
+      <TransactionForm
+        description={description}
+        setDescription={setDescription}
+        amount={amount}
+        setAmount={setAmount}
+        category={category}
+        setCategory={setCategory}
+        date={date}
+        setDate={setDate}
+        isExpense={isExpense}
+        setIsExpense={setIsExpense}
+        addTransaction={addTransaction}
+        editingId={editingId}
+        descriptionRef={descriptionRef}
+      />
 
 
-<TransactionList
-  sortedTransactions={sortedTransactions}
-  deleteTransaction={deleteTransaction}
-  editTransaction={editTransaction}
-  
-/>
-
-
-
-
-<TransactionForm
-  description={description}
-  setDescription={setDescription}
-  amount={amount}
-  setAmount={setAmount}
-  category={category}
-  setCategory={setCategory}
-  date={date}
-  setDate={setDate}
- isExpense={isExpense}
-  setIsExpense={setIsExpense}
-   addTransaction={addTransaction}
-  editingId={editingId}
-  descriptionRef={descriptionRef}
-/>
-
-
-
-      
       <p>Total Transactions: {transactions.length}</p>
       <p>Today's Transactions: {todayTransactions.length}</p>
       <p>Today's Income: ₹{todayIncome}</p>
       <p>Today's Expense: ₹{todayExpense}</p>
-
 
      
 
@@ -541,7 +541,7 @@ if (sortBy === "high") {
 
       
 </div>
-    
+    </>
   );
 }
 
