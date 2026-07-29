@@ -1,5 +1,5 @@
 
-
+import Home from "./pages/Home";
 import { useState, useEffect, useRef, useMemo } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 
@@ -319,6 +319,8 @@ if (sortBy === "high") {
     
 
     <div className="container">
+
+      <Home />
 
       <h1>Expense Tracker</h1>
 
