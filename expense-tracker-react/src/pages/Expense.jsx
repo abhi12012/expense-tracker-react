@@ -44,7 +44,67 @@ function Expense() {
 
 
 
+
+
+
+
 function addTransaction() {
+  // Validation
+  if (description.trim() === "" || amount <= 0) {
+    alert("Please enter description and amount.");
+    return;
+  }
+
+  
+
+//   // Edit Mode
+//   if (editingId !== null) {
+//     updateTransaction();
+//     return;
+//   }
+
+  // Add New Transaction
+  const newTransaction = {
+    id: Date.now(),
+    description,
+    amount,
+    isExpense,
+    category,
+    date,
+  };
+
+  setTransactions([...transactions, newTransaction]);
+
+
+  clearForm();
+}
+
+
+
+
+
+function updateTransaction() {
+
+  setTransactions(
+    transactions.map((item) => {
+
+      if (item.id === editingId) {
+        return {
+          ...item,
+          description,
+          amount,
+          isExpense,
+          category,
+          date,
+        };
+      }
+
+      return item;
+
+    })
+  );
+
+  clearForm();
 
 }
 
