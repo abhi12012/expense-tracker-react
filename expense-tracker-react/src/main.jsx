@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import { TransactionProvider } from "./context/TransactionContext";
 
 import { StrictMode } from 'react'
@@ -7,8 +8,10 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <TransactionProvider>
-    <App />
-  </TransactionProvider>
+  <BrowserRouter>
+    <TransactionProvider>
+      <App />
+    </TransactionProvider>
+  </BrowserRouter>
 </StrictMode>
 )
