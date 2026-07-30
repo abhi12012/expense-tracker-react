@@ -97,15 +97,14 @@ function updateTransaction() {
   return;
 }
 
-  // Add New Transaction
   const newTransaction = {
-    id: Date.now(),
-    description,
-    amount,
-    isExpense,
-    category,
-    date,
-  };
+  id: Date.now(),
+  description,
+  amount: Number(amount),
+  isExpense,
+  category,
+  date,
+};
 
   setTransactions([...transactions, newTransaction]);
 
@@ -271,6 +270,7 @@ const categoryFilteredTransactions = filteredTransactions.filter((item) => {
 
 
 
+
 const dateFilteredTransactions = categoryFilteredTransactions.filter((item) => {
 
   if (dateFilter === "All") {
@@ -306,13 +306,16 @@ const searchedTransactions = dateFilteredTransactions.filter((item) =>
 const sortedTransactions = [...searchedTransactions];
 
 if (sortBy === "low") {
-  sortedTransactions.sort((a, b) => a.amount - b.amount);
+  sortedTransactions.sort(
+    (a, b) => Number(a.amount) - Number(b.amount)
+  );
 }
 
 if (sortBy === "high") {
-  sortedTransactions.sort((a, b) => b.amount - a.amount);
+  sortedTransactions.sort(
+    (a, b) => Number(b.amount) - Number(a.amount)
+  );
 }
-
 
 
 

@@ -22,9 +22,17 @@ function Expense() {
 
     const [filter, setFilter] = useState("all");
 
+    const [sortBy, setSortBy] = useState("default");
+
+    const [search, setSearch] = useState("");
+
+    const [dateFilter, setDateFilter] = useState("All");
+
     const [isExpense, setIsExpense] = useState(true);
 
     const [editingId, setEditingId] = useState(null);
+
+    const [categoryFilter, setCategoryFilter] = useState("All");
 
     const descriptionRef = useRef();
 
@@ -188,6 +196,66 @@ const filteredTransactions = transactions.filter((item) => {
 
 
 
+const categoryFilteredTransactions = filteredTransactions.filter((item) => {
+  if (categoryFilter === "All") {
+    return true;
+  }
+
+  return item.category === categoryFilter;
+});
+
+
+
+
+
+const dateFilteredTransactions = categoryFilteredTransactions.filter((item) => {
+
+  if (dateFilter === "All") {
+    return true;
+  }
+
+  const transactionDate = new Date(item.date);
+  const today = new Date();
+
+  if (dateFilter === "Today") {
+    return transactionDate.toDateString() === today.toDateString();
+  }
+
+  if (dateFilter === "This Month") {
+    return (
+      transactionDate.getMonth() === today.getMonth() &&
+      transactionDate.getFullYear() === today.getFullYear()
+    );
+  }
+
+  return false;
+});
+
+
+
+
+
+const searchedTransactions = dateFilteredTransactions.filter((item) =>
+  item.description.toLowerCase().includes(search.toLowerCase())
+);
+
+
+
+
+
+const sortedTransactions = [...searchedTransactions];
+
+if (sortBy === "low") {
+  sortedTransactions.sort((a, b) => a.amount - b.amount);
+}
+
+if (sortBy === "high") {
+  sortedTransactions.sort((a, b) => b.amount - a.amount);
+}
+
+
+
+
 
 const todayTransactions = transactions.filter((item) => {
   const transactionDate = new Date(item.date);
@@ -286,10 +354,10 @@ const categorySummary = transactions.reduce((acc, item) => {
 
 
     <TransactionList
-      sortedTransactions={transactions}
-      deleteTransaction={deleteTransaction}
-      editTransaction={editTransaction}
-    />
+  sortedTransactions={sortedTransactions}
+  deleteTransaction={deleteTransaction}
+  editTransaction={editTransaction}
+/>
 
 
 
@@ -301,6 +369,70 @@ const categorySummary = transactions.reduce((acc, item) => {
 <p>This Month Transactions: {thisMonthTransactions.length}</p>
 
 
+
+
+
+
+<select
+  value={categoryFilter}
+  onChange={(e) => setCategoryFilter(e.target.value)}
+>
+  <option value="All">All Categories</option>
+  <option value="Food">Food</option>
+  <option value="Travel">Travel</option>
+  <option value="Salary">Salary</option>
+  <option value="Shopping">Shopping</option>
+</select>
+
+<p>Category Filter: {categoryFilter}</p>
+
+
+
+
+
+<select
+  value={dateFilter}
+  onChange={(e) => setDateFilter(e.target.value)}
+>
+  <option value="All">All Dates</option>
+  <option value="Today">Today</option>
+  <option value="This Month">This Month</option>
+</select>
+
+<p>Date Filter: {dateFilter}</p>
+
+<br /><br />
+
+
+
+
+<input
+  type="text"
+  placeholder="Search Transaction"
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+/>
+
+<p>Search: {search}</p>
+
+<br /><br />
+
+
+
+
+
+<select
+  value={sortBy}
+  onChange={(e) => setSortBy(e.target.value)}
+>
+  <option value="default">Default</option>
+  <option value="low">Low to High</option>
+  <option value="high">High to Low</option>
+</select>
+
+<p>Sort: {sortBy}</p>
+
+<br /><br />
 
 
 
