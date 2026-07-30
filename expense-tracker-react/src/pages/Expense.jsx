@@ -180,25 +180,28 @@ const expense = useMemo(() => {
 
 
 
-const balance = income - expense;
+const balance = useMemo(() => {
+  return income - expense;
+}, [income, expense]);git
 
 
 
 
-const filteredTransactions = transactions.filter((item) => {
-  if (filter === "all") {
-    return true;
-  }
+const filteredTransactions = useMemo(() => {
+  return transactions.filter((item) => {
+    if (filter === "all") {
+      return true;
+    }
 
-  if (filter === "income") {
-    return item.isExpense === false;
-  }
+    if (filter === "income") {
+      return item.isExpense === false;
+    }
 
-  if (filter === "expense") {
-    return item.isExpense === true;
-  }
-});
-
+    if (filter === "expense") {
+      return item.isExpense === true;
+    }
+  });
+}, [transactions, filter]);
 
 
 
