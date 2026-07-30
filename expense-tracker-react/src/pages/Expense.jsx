@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 import Dashboard from "../components/Dashboard";
@@ -163,14 +163,21 @@ function editTransaction(item) {
 
 
 
-const income = transactions
-  .filter((item) => item.isExpense === false)
-  .reduce((total, item) => total + Number(item.amount), 0);
+const income = useMemo(() => {
+  return transactions
+    .filter((item) => item.isExpense === false)
+    .reduce((total, item) => total + Number(item.amount), 0);
+}, [transactions]);
 
 
-const expense = transactions
-  .filter((item) => item.isExpense === true)
-  .reduce((total, item) => total + Number(item.amount), 0);
+
+
+const expense = useMemo(() => {
+  return transactions
+    .filter((item) => item.isExpense === true)
+    .reduce((total, item) => total + Number(item.amount), 0);
+}, [transactions]);
+
 
 
 const balance = income - expense;
