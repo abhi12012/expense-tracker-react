@@ -1,8 +1,12 @@
+import React from "react";
+
 function TransactionList({
   sortedTransactions,
    deleteTransaction,
    editTransaction,
 }) {
+
+   
   return (
     <>
       <h2>Transaction List</h2>
@@ -33,4 +37,4 @@ function TransactionList({
   );
 }
 
-export default TransactionList;
+export default React.memo(TransactionList);

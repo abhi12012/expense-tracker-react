@@ -15,7 +15,11 @@ addTransaction,
 
 
 }) {
+
+  console.log("TransactionForm Render");
   return (
+
+    
     <>
       <h2>Transaction Form</h2>
 

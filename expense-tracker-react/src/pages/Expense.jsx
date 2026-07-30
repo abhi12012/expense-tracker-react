@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useCallback } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 import Dashboard from "../components/Dashboard";
@@ -37,7 +37,11 @@ function Expense() {
     const descriptionRef = useRef();
 
 
-    function clearForm() {
+
+
+
+
+    const clearForm = useCallback(() => {
 
   setDescription("");
   setAmount(0);
@@ -50,8 +54,7 @@ function Expense() {
     descriptionRef.current.focus();
   }
 
-}
-
+}, []);
 
 
 
@@ -149,7 +152,7 @@ function deleteTransaction(id) {
 
 
 
-function editTransaction(item) {
+const editTransaction = useCallback((item) => {
 
   setDescription(item.description);
   setAmount(item.amount);
@@ -158,8 +161,7 @@ function editTransaction(item) {
   setDate(item.date);
   setIsExpense(item.isExpense);
 
-}
-
+}, []);
 
 
 
