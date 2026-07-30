@@ -11,7 +11,7 @@ function Expense() {
      const { value: transactions, setValue: setTransactions } =
   useLocalStorage("transactions");
 
-  
+
     const [description, setDescription] = useState("");
 
     const [amount, setAmount] = useState(0);
@@ -19,6 +19,8 @@ function Expense() {
     const [category, setCategory] = useState("Food");
 
     const [date, setDate] = useState("");
+
+    const [filter, setFilter] = useState("all");
 
     const [isExpense, setIsExpense] = useState(true);
 
@@ -168,13 +170,82 @@ const balance = income - expense;
 
 
 
+const filteredTransactions = transactions.filter((item) => {
+  if (filter === "all") {
+    return true;
+  }
+
+  if (filter === "income") {
+    return item.isExpense === false;
+  }
+
+  if (filter === "expense") {
+    return item.isExpense === true;
+  }
+});
+
+
+
+
+
+
+const todayTransactions = transactions.filter((item) => {
+  const transactionDate = new Date(item.date);
+  const today = new Date();
+
+  return transactionDate.toDateString() === today.toDateString();
+});
+
+
+const todayIncome = todayTransactions
+  .filter((item) => item.isExpense === false)
+  .reduce((total, item) => total + Number(item.amount), 0);
+
+
+const todayExpense = todayTransactions
+  .filter((item) => item.isExpense === true)
+  .reduce((total, item) => total + Number(item.amount), 0);
+
+
+
+
+
+  const today = new Date();
+
+const thisMonthTransactions = transactions.filter((item) => {
+  const transactionDate = new Date(item.date);
+
+  return (
+    transactionDate.getMonth() === today.getMonth() &&
+    transactionDate.getFullYear() === today.getFullYear()
+  );
+});
+
+
+
+
+
+
+const categorySummary = transactions.reduce((acc, item) => {
+  if (!acc[item.category]) {
+    acc[item.category] = 0;
+  }
+
+  acc[item.category] += Number(item.amount);
+
+  return acc;
+}, {});
+
+
 
 
 
 
   return (
 
+   
 
+    
   <div className="container">
 
     <h1>Expense Tracker</h1>
@@ -221,7 +292,72 @@ const balance = income - expense;
     />
 
 
+
+    <p>Total Transactions: {transactions.length}</p>
+<p>Today's Transactions: {todayTransactions.length}</p>
+<p>Today's Income: ₹{todayIncome}</p>
+<p>Today's Expense: ₹{todayExpense}</p>
+
+<p>This Month Transactions: {thisMonthTransactions.length}</p>
+
+
+
+
+
+<h3>Category Summary</h3>
+
+{Object.entries(categorySummary).map(([category, total]) => (
+  <p key={category}>
+    {category === "Food" && "🍔"}
+    {category === "Travel" && "✈️"}
+    {category === "Salary" && "💰"}
+    {category === "Shopping" && "🛍️"}
+
+    {" "}
+    {category}: ₹{total}
+  </p>
+))}
+
+
+
+
+
+
+<h3>Category Chart</h3>
+
+{Object.entries(categorySummary).map(([category, total]) => (
+  <div key={category}>
+    <p>{category}</p>
+
+    <div
+      style={{
+        background:
+          category === "Food"
+            ? "orange"
+            : category === "Travel"
+            ? "blue"
+            : category === "Salary"
+            ? "green"
+            : "purple",
+        height: "20px",
+        width: `${total / 10}px`,
+      }}
+    ></div>
+
+    <p>₹{total}</p>
+
+    <br />
   </div>
+))}
+
+
+
+  </div>
+
+
+
+
+
 );
 }
 export default Expense;
