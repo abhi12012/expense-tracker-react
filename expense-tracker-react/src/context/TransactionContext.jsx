@@ -1,13 +1,19 @@
 import { createContext } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const TransactionContext = createContext();
 
 
 function TransactionProvider({ children }) {
 
+  const { value: transactions, setValue: setTransactions } =
+    useLocalStorage("transactions");
+
   const value = {
-  name: "Abhishek"
-};
+    name: "Abhishek",
+    transactions,
+    setTransactions,
+  };
 
   return (
     <TransactionContext.Provider value={value}>
@@ -16,6 +22,5 @@ function TransactionProvider({ children }) {
   );
 
 }
-
 export { TransactionProvider };
 export default TransactionContext;

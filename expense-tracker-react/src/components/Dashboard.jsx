@@ -4,7 +4,9 @@ import TransactionContext from "../context/TransactionContext";
 
 function Dashboard({ balance, income, expense, children, totalTransactions }) {
 
-  const { name } = useContext(TransactionContext);
+  const { name, transactions } = useContext(TransactionContext);
+
+console.log("Context Transactions:", transactions);
 
   console.log("Dashboard Render");
 

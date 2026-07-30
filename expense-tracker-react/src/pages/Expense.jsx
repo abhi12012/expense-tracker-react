@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useCallback } from "react";
+import { useState, useRef, useMemo, useCallback, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 import Dashboard from "../components/Dashboard";
@@ -7,6 +7,8 @@ import TransactionList from "../components/TransactionList";
 
 
 function Expense() {
+
+  
 
      const { value: transactions, setValue: setTransactions } =
   useLocalStorage("transactions");
