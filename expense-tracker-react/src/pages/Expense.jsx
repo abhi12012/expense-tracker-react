@@ -206,14 +206,15 @@ const filteredTransactions = useMemo(() => {
 
 
 
-const categoryFilteredTransactions = filteredTransactions.filter((item) => {
-  if (categoryFilter === "All") {
-    return true;
-  }
+const categoryFilteredTransactions = useMemo(() => {
+  return filteredTransactions.filter((item) => {
+    if (categoryFilter === "All") {
+      return true;
+    }
 
-  return item.category === categoryFilter;
-});
-
+    return item.category === categoryFilter;
+  });
+}, [filteredTransactions, categoryFilter]);
 
 
 
@@ -245,24 +246,36 @@ const dateFilteredTransactions = categoryFilteredTransactions.filter((item) => {
 
 
 
-const searchedTransactions = dateFilteredTransactions.filter((item) =>
-  item.description.toLowerCase().includes(search.toLowerCase())
-);
+const searchedTransactions = useMemo(() => {
+  return dateFilteredTransactions.filter((item) =>
+    item.description
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
+}, [dateFilteredTransactions, search]);
 
 
 
 
+const sortedTransactions = useMemo(() => {
 
-const sortedTransactions = [...searchedTransactions];
+  const sorted = [...searchedTransactions];
 
-if (sortBy === "low") {
-  sortedTransactions.sort((a, b) => a.amount - b.amount);
-}
+  if (sortBy === "low") {
+    sorted.sort(
+      (a, b) => Number(a.amount) - Number(b.amount)
+    );
+  }
 
-if (sortBy === "high") {
-  sortedTransactions.sort((a, b) => b.amount - a.amount);
-}
+  if (sortBy === "high") {
+    sorted.sort(
+      (a, b) => Number(b.amount) - Number(a.amount)
+    );
+  }
 
+  return sorted;
+
+}, [searchedTransactions, sortBy]);
 
 
 
