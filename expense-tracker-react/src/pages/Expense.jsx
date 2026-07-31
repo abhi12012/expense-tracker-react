@@ -1,3 +1,6 @@
+import TransactionContext from "../context/TransactionContext";
+
+
 import CategorySummary from "../components/CategorySummary";
 import CategoryChart from "../components/CategoryChart";
 
@@ -24,11 +27,9 @@ import TransactionList from "../components/TransactionList";
 function Expense() {
 
   
-
-     const { value: transactions, setValue: setTransactions } =
-  useLocalStorage("transactions");
-
-
+const { transactions, setTransactions } =
+  useContext(TransactionContext);
+     
     const [description, setDescription] = useState("");
 
     const [amount, setAmount] = useState(0);
