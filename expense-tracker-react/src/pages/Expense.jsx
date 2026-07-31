@@ -1,3 +1,6 @@
+import CategorySummary from "../components/CategorySummary";
+import CategoryChart from "../components/CategoryChart";
+
 import useCategorySummary from "../hooks/useCategorySummary";
 import useTransactionStats from "../hooks/useTransactionStats";
 import useTransactionFilter from "../hooks/useTransactionFilter";
@@ -386,52 +389,16 @@ const categorySummary = useCategorySummary(transactions);
 
 
 
-<h3>Category Summary</h3>
-
-{Object.entries(categorySummary).map(([category, total]) => (
-  <p key={category}>
-    {category === "Food" && "🍔"}
-    {category === "Travel" && "✈️"}
-    {category === "Salary" && "💰"}
-    {category === "Shopping" && "🛍️"}
-
-    {" "}
-    {category}: ₹{total}
-  </p>
-))}
+<CategorySummary
+  categorySummary={categorySummary}
+/>
 
 
 
 
-
-
-<h3>Category Chart</h3>
-
-{Object.entries(categorySummary).map(([category, total]) => (
-  <div key={category}>
-    <p>{category}</p>
-
-    <div
-      style={{
-        background:
-          category === "Food"
-            ? "orange"
-            : category === "Travel"
-            ? "blue"
-            : category === "Salary"
-            ? "green"
-            : "purple",
-        height: "20px",
-        width: `${total / 10}px`,
-      }}
-    ></div>
-
-    <p>₹{total}</p>
-
-    <br />
-  </div>
-))}
-
+<CategoryChart
+  categorySummary={categorySummary}
+/>
 
 
   </div>
