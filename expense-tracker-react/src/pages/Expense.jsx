@@ -176,8 +176,6 @@ const updateTransaction = useCallback(() => {
 
 
 
-
-
 const editTransaction = useCallback((item) => {
 
   setDescription(item.description);
