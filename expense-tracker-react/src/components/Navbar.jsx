@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 function Navbar() {
@@ -12,15 +12,26 @@ function Navbar() {
       </h2>
 
 
-      <Link to="/">
-        Home
-      </Link>
+     <NavLink
+  to="/"
+  className={({isActive}) =>
+    isActive ? "active" : ""
+  }
+>
+  Home
+</NavLink>
 
 
-      <Link to="/expense">
-        Expense
-      </Link>
 
+
+<NavLink
+  to="/expense"
+  className={({isActive}) =>
+    isActive ? "active" : ""
+  }
+>
+  Expense
+</NavLink>
 
     </nav>
 
