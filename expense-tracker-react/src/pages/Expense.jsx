@@ -87,30 +87,36 @@ const {
 
 
 
-function addTransaction() {
+const addTransaction = useCallback(() => {
+
   // Validation
   if (description.trim() === "" || amount <= 0) {
     alert("Please enter description and amount.");
+    return;
+  }
 
 
+  // Edit mode
+  if (editingId !== null) {
 
+    const updatedTransaction = {
+      id: editingId,
+      description,
+      amount,
+      isExpense,
+      category,
+      date,
+    };
 
+    contextUpdateTransaction(updatedTransaction);
 
-
+    clearForm();
 
     return;
   }
 
-  
 
-if (editingId !== null) {
-  updateTransaction();
-  return;
-}
-
-
-
-  
+  // Add new transaction
   const newTransaction = {
     id: Date.now(),
     description,
@@ -120,16 +126,28 @@ if (editingId !== null) {
     date,
   };
 
- contextAddTransaction(newTransaction);
+
+  contextAddTransaction(newTransaction);
 
   clearForm();
-}
+
+
+}, [
+  description,
+  amount,
+  isExpense,
+  category,
+  date,
+  editingId,
+  contextAddTransaction,
+  contextUpdateTransaction,
+  clearForm
+]);
 
 
 
 
-
-function updateTransaction() {
+const updateTransaction = useCallback(() => {
 
   const updatedTransaction = {
     id: editingId,
@@ -144,9 +162,16 @@ function updateTransaction() {
 
   clearForm();
 
-}
-
-
+}, [
+  editingId,
+  description,
+  amount,
+  isExpense,
+  category,
+  date,
+  contextUpdateTransaction,
+  clearForm
+]);
 
 
 
