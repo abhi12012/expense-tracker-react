@@ -1,12 +1,16 @@
 import React from "react";
+import { useContext } from "react";
+import TransactionContext from "../context/TransactionContext";
 
 function TransactionList({
   sortedTransactions,
-   deleteTransaction,
-   editTransaction,
+  editTransaction,
 }) {
 
-   
+  
+ const { deleteTransaction: contextDeleteTransaction } =
+  useContext(TransactionContext);
+
   return (
     <>
       <h2>Transaction List</h2>
@@ -27,9 +31,12 @@ function TransactionList({
    
 
 
-  <button onClick={() => deleteTransaction(item.id)}>
-    Delete
-  </button>
+  <button onClick={() => contextDeleteTransaction(item.id)}>
+  Delete
+</button>
+
+
+
 </div>
         ))}
       </div>

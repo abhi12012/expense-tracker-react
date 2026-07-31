@@ -16,7 +16,7 @@ addTransaction,
 
 }) {
 
-  console.log("TransactionForm Render");
+  
   return (
 
     

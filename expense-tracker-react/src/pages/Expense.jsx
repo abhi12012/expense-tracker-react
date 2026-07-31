@@ -16,7 +16,7 @@ import useTodayStats from "../hooks/useTodayStats";
 
 
 
-import { useState, useRef, useMemo, useCallback, useContext } from "react";
+import { useState, useRef, useCallback, useContext } from "react";
 
 
 import Dashboard from "../components/Dashboard";
@@ -292,7 +292,6 @@ const categorySummary = useCategorySummary(transactions);
 
     <TransactionList
   sortedTransactions={sortedTransactions}
-  deleteTransaction={deleteTransaction}
   editTransaction={editTransaction}
 />
 
