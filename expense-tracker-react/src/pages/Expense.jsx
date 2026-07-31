@@ -186,7 +186,7 @@ const expense = useMemo(() => {
 
 const balance = useMemo(() => {
   return income - expense;
-}, [income, expense]);git
+}, [income, expense]);
 
 
 

@@ -6,9 +6,8 @@ function Dashboard({ balance, income, expense, children, totalTransactions }) {
 
   const { name, transactions } = useContext(TransactionContext);
 
-console.log("Context Transactions:", transactions);
 
-  console.log("Dashboard Render");
+  
 
   return (
     <>
