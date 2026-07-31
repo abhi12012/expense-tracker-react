@@ -72,12 +72,10 @@ function updateTransaction(updatedTransaction) {
   const value = {
   name: "Abhishek",
   transactions,
-  setTransactions,
   deleteTransaction,
   addTransaction,
   updateTransaction,
 };
-
 
   return (
     <TransactionContext.Provider value={value}>

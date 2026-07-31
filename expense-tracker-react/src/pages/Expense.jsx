@@ -30,11 +30,11 @@ function Expense() {
 
 const { 
   transactions, 
-  setTransactions,
   deleteTransaction,
   addTransaction: contextAddTransaction,
   updateTransaction: contextUpdateTransaction
 } = useContext(TransactionContext);
+
 
 
     const [description, setDescription] = useState("");
@@ -131,29 +131,20 @@ if (editingId !== null) {
 
 function updateTransaction() {
 
-  setTransactions(
-    transactions.map((item) => {
+  const updatedTransaction = {
+    id: editingId,
+    description,
+    amount,
+    isExpense,
+    category,
+    date,
+  };
 
-      if (item.id === editingId) {
-        return {
-          ...item,
-          description,
-          amount,
-          isExpense,
-          category,
-          date,
-        };
-      }
-
-      return item;
-
-    })
-  );
+  contextUpdateTransaction(updatedTransaction);
 
   clearForm();
 
 }
-
 
 
 
