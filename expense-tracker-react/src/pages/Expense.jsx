@@ -1,4 +1,11 @@
 import useCategorySummary from "../hooks/useCategorySummary";
+import useTransactionStats from "../hooks/useTransactionStats";
+import useTransactionFilter from "../hooks/useTransactionFilter";
+import useCategoryFilter from "../hooks/useCategoryFilter";
+import useDateFilter from "../hooks/useDateFilter";
+
+
+
 
 import { useState, useRef, useMemo, useCallback, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -169,85 +176,28 @@ const editTransaction = useCallback((item) => {
 
 
 
-const income = useMemo(() => {
-  return transactions
-    .filter((item) => item.isExpense === false)
-    .reduce((total, item) => total + Number(item.amount), 0);
-}, [transactions]);
+const { income, expense, balance } =
+  useTransactionStats(transactions);
 
 
 
 
-const expense = useMemo(() => {
-  return transactions
-    .filter((item) => item.isExpense === true)
-    .reduce((total, item) => total + Number(item.amount), 0);
-}, [transactions]);
-
-
-
-const balance = useMemo(() => {
-  return income - expense;
-}, [income, expense]);
+const filteredTransactions =
+  useTransactionFilter(transactions, filter);
 
 
 
 
-const filteredTransactions = useMemo(() => {
-  return transactions.filter((item) => {
-    if (filter === "all") {
-      return true;
-    }
 
-    if (filter === "income") {
-      return item.isExpense === false;
-    }
-
-    if (filter === "expense") {
-      return item.isExpense === true;
-    }
-  });
-}, [transactions, filter]);
+const categoryFilteredTransactions =
+  useCategoryFilter(filteredTransactions, categoryFilter);
 
 
 
+const dateFilteredTransactions =
+  useDateFilter(categoryFilteredTransactions, dateFilter);
 
-const categoryFilteredTransactions = useMemo(() => {
-  return filteredTransactions.filter((item) => {
-    if (categoryFilter === "All") {
-      return true;
-    }
-
-    return item.category === categoryFilter;
-  });
-}, [filteredTransactions, categoryFilter]);
-
-
-
-
-const dateFilteredTransactions = categoryFilteredTransactions.filter((item) => {
-
-  if (dateFilter === "All") {
-    return true;
-  }
-
-  const transactionDate = new Date(item.date);
-  const today = new Date();
-
-  if (dateFilter === "Today") {
-    return transactionDate.toDateString() === today.toDateString();
-  }
-
-  if (dateFilter === "This Month") {
-    return (
-      transactionDate.getMonth() === today.getMonth() &&
-      transactionDate.getFullYear() === today.getFullYear()
-    );
-  }
-
-  return false;
-});
-
+  
 
 
 
