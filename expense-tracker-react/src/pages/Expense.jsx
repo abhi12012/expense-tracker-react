@@ -3,6 +3,9 @@ import useTransactionStats from "../hooks/useTransactionStats";
 import useTransactionFilter from "../hooks/useTransactionFilter";
 import useCategoryFilter from "../hooks/useCategoryFilter";
 import useDateFilter from "../hooks/useDateFilter";
+import useSearch from "../hooks/useSearch";
+import useSort from "../hooks/useSort";
+import useTodayStats from "../hooks/useTodayStats";
 
 
 
@@ -197,61 +200,38 @@ const categoryFilteredTransactions =
 const dateFilteredTransactions =
   useDateFilter(categoryFilteredTransactions, dateFilter);
 
-  
 
 
 
 
-const searchedTransactions = useMemo(() => {
-  return dateFilteredTransactions.filter((item) =>
-    item.description
-      .toLowerCase()
-      .includes(search.toLowerCase())
-  );
-}, [dateFilteredTransactions, search]);
+
+const searchedTransactions =
+  useSearch(dateFilteredTransactions, search);
 
 
 
 
-const sortedTransactions = useMemo(() => {
-
-  const sorted = [...searchedTransactions];
-
-  if (sortBy === "low") {
-    sorted.sort(
-      (a, b) => Number(a.amount) - Number(b.amount)
-    );
-  }
-
-  if (sortBy === "high") {
-    sorted.sort(
-      (a, b) => Number(b.amount) - Number(a.amount)
-    );
-  }
-
-  return sorted;
-
-}, [searchedTransactions, sortBy]);
 
 
 
 
-const todayTransactions = transactions.filter((item) => {
-  const transactionDate = new Date(item.date);
-  const today = new Date();
-
-  return transactionDate.toDateString() === today.toDateString();
-});
+const sortedTransactions =
+  useSort(searchedTransactions, sortBy);
 
 
-const todayIncome = todayTransactions
-  .filter((item) => item.isExpense === false)
-  .reduce((total, item) => total + Number(item.amount), 0);
 
 
-const todayExpense = todayTransactions
-  .filter((item) => item.isExpense === true)
-  .reduce((total, item) => total + Number(item.amount), 0);
+
+
+
+
+const {
+  todayTransactions,
+  todayIncome,
+  todayExpense,
+} = useTodayStats(transactions);
+
+
 
 
 
