@@ -1,3 +1,5 @@
+import React from "react";
+
 function TransactionForm({
   description,
   setDescription,
@@ -117,4 +119,4 @@ addTransaction,
   );
 }
 
-export default TransactionForm;
+export default React.memo(TransactionForm);
