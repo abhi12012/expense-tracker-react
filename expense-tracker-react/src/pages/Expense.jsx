@@ -1,3 +1,5 @@
+import useCategorySummary from "../hooks/useCategorySummary";
+
 import { useState, useRef, useMemo, useCallback, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -321,16 +323,7 @@ const thisMonthTransactions = transactions.filter((item) => {
 
 
 
-const categorySummary = transactions.reduce((acc, item) => {
-  if (!acc[item.category]) {
-    acc[item.category] = 0;
-  }
-
-  acc[item.category] += Number(item.amount);
-
-  return acc;
-}, {});
-
+const categorySummary = useCategorySummary(transactions);
 
 
 
