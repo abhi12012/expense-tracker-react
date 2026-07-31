@@ -47,13 +47,36 @@ function addTransaction(newTransaction) {
 
 
 
+function updateTransaction(updatedTransaction) {
+
+  setTransactions(
+    transactions.map((item) => {
+
+      if (item.id === updatedTransaction.id) {
+        return updatedTransaction;
+      }
+
+      return item;
+
+    })
+  );
+
+}
+
+
+
+
+
+
+
   const value = {
-    name: "Abhishek",
-    transactions,
-    setTransactions,
-    deleteTransaction,
-    addTransaction,
-  };
+  name: "Abhishek",
+  transactions,
+  setTransactions,
+  deleteTransaction,
+  addTransaction,
+  updateTransaction,
+};
 
 
   return (

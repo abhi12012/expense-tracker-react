@@ -32,9 +32,9 @@ const {
   transactions, 
   setTransactions,
   deleteTransaction,
-  addTransaction: contextAddTransaction
+  addTransaction: contextAddTransaction,
+  updateTransaction: contextUpdateTransaction
 } = useContext(TransactionContext);
-
 
 
     const [description, setDescription] = useState("");
