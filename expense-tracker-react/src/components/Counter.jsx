@@ -7,23 +7,19 @@ const initialState = 0;
 
 function reducer(state, action) {
 
-  if (action === "increment") {
+  if (action.type === "increment") {
     return state + 1;
   }
 
-  if (action === "decrement") {
-  return state - 1;
-}
+  if (action.type === "decrement") {
+    return state - 1;
+  }
 
+  if (action.type === "reset") {
+    return initialState;
+  }
 
-if (action === "reset") {
-  return initialState;
-}
-
-
-return state;
-
-
+  return state;
 }
 
 
@@ -42,7 +38,9 @@ function Counter() {
     <h1>{state}</h1>
 
     <button
-  onClick={() => dispatch("increment")}
+  onClick={() =>
+    dispatch({ type: "increment" })
+  }
 >
   +
 </button>
@@ -52,22 +50,24 @@ function Counter() {
 <br />
 
 <button
-  onClick={() => dispatch("decrement")}
+  onClick={() =>
+    dispatch({ type: "decrement" })
+  }
 >
   -
 </button>
-
 
 <br />
 <br />
 
 
 <button
-  onClick={() => dispatch("reset")}
+  onClick={() =>
+    dispatch({ type: "reset" })
+  }
 >
   Reset
 </button>
-
   </>
 );
 
