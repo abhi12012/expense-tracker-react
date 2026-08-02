@@ -15,6 +15,12 @@ function reducer(state, action) {
   return state - 1;
 }
 
+
+if (action === "reset") {
+  return initialState;
+}
+
+
 return state;
 
 
@@ -49,6 +55,17 @@ function Counter() {
   onClick={() => dispatch("decrement")}
 >
   -
+</button>
+
+
+<br />
+<br />
+
+
+<button
+  onClick={() => dispatch("reset")}
+>
+  Reset
 </button>
 
   </>
