@@ -21,9 +21,17 @@ function Counter() {
     initialState
   );
 
-  return (
+ return (
+  <>
     <h1>{state}</h1>
-  );
+
+    <button
+  onClick={() => dispatch("increment")}
+>
+  +
+</button>
+  </>
+);
 
 }
 
