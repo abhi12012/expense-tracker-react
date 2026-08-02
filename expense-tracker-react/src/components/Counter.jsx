@@ -19,6 +19,16 @@ function reducer(state, action) {
     return initialState;
   }
 
+
+  if (action.type === "add") {
+  return state + action.payload;
+}
+
+
+if (action.type === "addObject") {
+  return state + action.payload.value;
+}
+
   return state;
 }
 
@@ -57,6 +67,13 @@ function Counter() {
   -
 </button>
 
+
+<br />
+<br />
+
+
+
+
 <br />
 <br />
 
@@ -67,6 +84,41 @@ function Counter() {
   }
 >
   Reset
+</button>
+
+
+<br />
+<br />
+
+
+<button
+  onClick={() =>
+    dispatch({
+      type: "add",
+      payload: 5
+    })
+  }
+>
+  Add 5
+</button>
+
+
+<br />
+<br />
+
+
+
+<button
+  onClick={() =>
+    dispatch({
+      type: "addObject",
+      payload: {
+        value: 10
+      }
+    })
+  }
+>
+  Add Object 10
 </button>
   </>
 );
