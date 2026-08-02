@@ -42,17 +42,21 @@ function transactionReducer(state, action) {
 function TransactionProvider({ children }) {
 
 
+  const { value: transactions, setValue: setTransactions } =
+    useLocalStorage("transactions");
+
+
+  const initialState = {
+    transactions
+  };
+
+
   const [state, dispatch] = useReducer(
     transactionReducer,
     initialState
   );
 
-
-  const { value: transactions, setValue: setTransactions } =
-    useLocalStorage("transactions");
-
-
-
+  
 
 
 
