@@ -50,7 +50,7 @@ function Counter() {
 
     <button
   onClick={() =>
-    dispatch({ type: "increment" })
+   dispatch({ type: INCREMENT })
   }
 >
   +
@@ -62,7 +62,7 @@ function Counter() {
 
 <button
   onClick={() =>
-    dispatch({ type: "decrement" })
+   dispatch({ type: DECREMENT })
   }
 >
   -
@@ -78,7 +78,7 @@ function Counter() {
 
 <button
   onClick={() =>
-    dispatch({ type: "reset" })
+   dispatch({ type: RESET })
   }
 >
   Reset
