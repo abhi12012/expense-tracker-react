@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const TransactionContext = createContext();
@@ -6,10 +6,51 @@ const TransactionContext = createContext();
 
 
 
+
+
+const initialState = {
+  transactions: []
+};
+
+
+function transactionReducer(state, action) {
+
+  switch(action.type) {
+
+    case "ADD_TRANSACTION":
+
+      return {
+
+            ...state,
+
+             transactions: [
+      ...state.transactions,
+      action.payload
+    ]
+
+      };
+
+  }
+
+}
+
+
+
+
+
+
 function TransactionProvider({ children }) {
+
+
+  const [state, dispatch] = useReducer(
+    transactionReducer,
+    initialState
+  );
+
 
   const { value: transactions, setValue: setTransactions } =
     useLocalStorage("transactions");
+
 
 
 
