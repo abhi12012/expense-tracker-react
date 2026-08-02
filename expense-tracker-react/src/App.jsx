@@ -1,3 +1,6 @@
+import Counter from "./components/Counter";
+
+
 import Navbar from "./components/Navbar";
 
 
@@ -28,6 +31,12 @@ function App() {
         path="/expense" 
         element={<Expense />} 
       />
+
+
+      <Route
+  path="/counter"
+  element={<Counter />}
+/>
 
     </Routes>
 
