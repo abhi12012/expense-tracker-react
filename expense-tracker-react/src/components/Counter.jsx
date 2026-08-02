@@ -1,37 +1,38 @@
 import { useReducer } from "react";
 
 const initialState = 0;
+const INCREMENT = "increment";
+const DECREMENT = "decrement";
+const RESET = "reset";
 
 
 
 
 function reducer(state, action) {
 
-  if (action.type === "increment") {
-    return state + 1;
+  switch(action.type) {
+
+    case INCREMENT:
+      return state + 1;
+
+    case DECREMENT:
+      return state - 1;
+
+    case RESET:
+      return initialState;
+
+    case "add":
+      return state + action.payload;
+
+    case "addObject":
+      return state + action.payload.value;
+
+    default:
+      return state;
+
   }
 
-  if (action.type === "decrement") {
-    return state - 1;
-  }
-
-  if (action.type === "reset") {
-    return initialState;
-  }
-
-
-  if (action.type === "add") {
-  return state + action.payload;
 }
-
-
-if (action.type === "addObject") {
-  return state + action.payload.value;
-}
-
-  return state;
-}
-
 
 
 
@@ -74,9 +75,6 @@ function Counter() {
 
 
 
-<br />
-<br />
-
 
 <button
   onClick={() =>
@@ -85,6 +83,8 @@ function Counter() {
 >
   Reset
 </button>
+
+
 
 
 <br />
