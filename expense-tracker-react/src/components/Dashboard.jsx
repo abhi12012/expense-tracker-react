@@ -6,7 +6,7 @@ import TransactionContext from "../context/TransactionContext";
 
 function Dashboard({ balance, income, expense, children, totalTransactions }) {
 
-  const { name, transactions } = useContext(TransactionContext);
+  const { name } = useContext(TransactionContext);
 
 
   
@@ -18,11 +18,32 @@ function Dashboard({ balance, income, expense, children, totalTransactions }) {
       <p>Hello {name}</p>
       {children}
 
-<h2>Balance: ₹{balance}</h2>
-<h2>Income: ₹{income}</h2>
-<h2>Expense: ₹{expense}</h2>
 
-<h2>Total Transactions: {totalTransactions}</h2>
+<div className="dashboard-cards">
+
+<div className="card">
+  <h3>Balance</h3>
+  <p>₹{balance}</p>
+</div>
+
+<div className="card">
+  <h3>Income</h3>
+  <p>₹{income}</p>
+</div>
+
+
+<div className="card">
+  <h3>Expense</h3>
+  <p>₹{expense}</p>
+</div>
+
+
+</div>
+
+<div className="card">
+  <h3>Total Transactions</h3>
+  <p>{totalTransactions}</p>
+</div>
 
     </>
   );
