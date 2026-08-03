@@ -345,6 +345,8 @@ const categorySummary = useCategorySummary(transactions);
 
     <div className="filter-section">
 
+       <div className="filter-row">
+
 
       <select
         value={categoryFilter}
@@ -412,10 +414,7 @@ const categorySummary = useCategorySummary(transactions);
   type="text"
   placeholder="Search Transaction"
   value={search}
-  onChange={(e) => {
-    console.log("Typing:", e.target.value);
-    setSearch(e.target.value);
-  }}
+  onChange={(e) => setSearch(e.target.value)}
 />
 
 
@@ -467,7 +466,7 @@ const categorySummary = useCategorySummary(transactions);
       categorySummary={categorySummary}
     />
 
-
+  </div>
   </div>
 
 );
