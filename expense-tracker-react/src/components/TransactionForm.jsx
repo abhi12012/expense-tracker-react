@@ -25,6 +25,11 @@ addTransaction,
     <>
       <h2>Transaction Form</h2>
 
+
+
+
+    <div className="form-group">
+
       <input
        ref={descriptionRef}
   type="text"
@@ -33,25 +38,28 @@ addTransaction,
   onChange={(e) => setDescription(e.target.value)}
 />
 
+</div>
 
 
 
-<br />
-      <br />
 
 
+
+<div className="form-group">
 <input
   type="number"
   placeholder="Amount"
   value={amount}
   onChange={(e) => setAmount(Number(e.target.value))}
 />
+</div>
 
 
-<br />
-      <br />
 
 
+
+
+<div className="form-group">
 <select
   value={category}
   onChange={(e) => setCategory(e.target.value)}
@@ -62,29 +70,30 @@ addTransaction,
   <option value="Shopping">Shopping</option>
 </select>
 
-
-<br />
-      <br />
+</div>
 
 
 
+
+<div className="form-group">
 
 <input
   type="date"
   value={date}
   onChange={(e) => setDate(e.target.value)}
 />
-<p>Date: {date}</p>
+
+
+</div>
 
 
 
 
-
-
-<br />
-      <br />
 
        
+
+    <div className="form-group">
+
       <label>
   <input
     type="checkbox"
@@ -94,9 +103,9 @@ addTransaction,
   Expense
 </label>
 
- <p>Expense: {isExpense.toString()}</p>
+ 
 
-
+</div>
 
 
 
@@ -105,11 +114,9 @@ addTransaction,
 </button>
 
 
-       <br />
-      <br />
+       
 
 
-<br /><br />
 
 
 
