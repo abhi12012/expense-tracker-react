@@ -21,28 +21,26 @@ function Dashboard({ balance, income, expense, children, totalTransactions }) {
 
 <div className="dashboard-cards">
 
-<div className="card">
-  <h3>Balance</h3>
-  <p>₹{balance}</p>
-</div>
+  <div className="card">
+    <h3>Balance</h3>
+    <p>₹{balance}</p>
+  </div>
 
-<div className="card">
-  <h3>Income</h3>
-  <p>₹{income}</p>
-</div>
+  <div className="card">
+    <h3>Income</h3>
+    <p>₹{income}</p>
+  </div>
 
+  <div className="card">
+    <h3>Expense</h3>
+    <p>₹{expense}</p>
+  </div>
 
-<div className="card">
-  <h3>Expense</h3>
-  <p>₹{expense}</p>
-</div>
+  <div className="card">
+    <h3>Total Transactions</h3>
+    <p>{totalTransactions}</p>
+  </div>
 
-
-</div>
-
-<div className="card">
-  <h3>Total Transactions</h3>
-  <p>{totalTransactions}</p>
 </div>
 
     </>
