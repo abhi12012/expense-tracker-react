@@ -233,8 +233,6 @@ const sortedTransactions =
 
 
 
-
-
 const {
   todayTransactions,
   todayIncome,
@@ -271,12 +269,10 @@ const categorySummary = useCategorySummary(transactions);
 
   return (
 
-   
-
-    
   <div className="container">
 
     <h1>Expense Tracker</h1>
+
 
     <Dashboard
       balance={balance}
@@ -287,6 +283,7 @@ const categorySummary = useCategorySummary(transactions);
       <h3>Welcome to Expense Tracker</h3>
       <p>React Learning Day 🚀</p>
     </Dashboard>
+
 
 
     <TransactionForm
@@ -313,55 +310,101 @@ const categorySummary = useCategorySummary(transactions);
     />
 
 
+
     <TransactionList
-  sortedTransactions={sortedTransactions}
-  editTransaction={editTransaction}
-/>
+      sortedTransactions={sortedTransactions}
+      editTransaction={editTransaction}
+    />
 
 
 
-    <p>Total Transactions: {transactions.length}</p>
-<p>Today's Transactions: {todayTransactions.length}</p>
-<p>Today's Income: ₹{todayIncome}</p>
-<p>Today's Expense: ₹{todayExpense}</p>
+    <div className="stats-section">
 
-<p>This Month Transactions: {thisMonthTransactions.length}</p>
+      <p>Total Transactions: {transactions.length}</p>
 
+      <p>
+        Today's Transactions: {todayTransactions.length}
+      </p>
 
+      <p>
+        Today's Income: ₹{todayIncome}
+      </p>
 
+      <p>
+        Today's Expense: ₹{todayExpense}
+      </p>
 
+      <p>
+        This Month Transactions: {thisMonthTransactions.length}
+      </p>
 
-
-<select
-  value={categoryFilter}
-  onChange={(e) => setCategoryFilter(e.target.value)}
->
-  <option value="All">All Categories</option>
-  <option value="Food">Food</option>
-  <option value="Travel">Travel</option>
-  <option value="Salary">Salary</option>
-  <option value="Shopping">Shopping</option>
-</select>
-
-<p>Category Filter: {categoryFilter}</p>
-
+    </div>
 
 
 
 
-<select
-  value={dateFilter}
-  onChange={(e) => setDateFilter(e.target.value)}
->
-  <option value="All">All Dates</option>
-  <option value="Today">Today</option>
-  <option value="This Month">This Month</option>
-</select>
+    <div className="filter-section">
 
-<p>Date Filter: {dateFilter}</p>
 
-<br /><br />
+      <select
+        value={categoryFilter}
+        onChange={(e) => setCategoryFilter(e.target.value)}
+      >
 
+        <option value="All">
+          All Categories
+        </option>
+
+        <option value="Food">
+          Food
+        </option>
+
+        <option value="Travel">
+          Travel
+        </option>
+
+        <option value="Salary">
+          Salary
+        </option>
+
+        <option value="Shopping">
+          Shopping
+        </option>
+
+      </select>
+
+
+      <p>
+        Category Filter: {categoryFilter}
+      </p>
+
+
+
+
+      <select
+        value={dateFilter}
+        onChange={(e) => setDateFilter(e.target.value)}
+      >
+
+        <option value="All">
+          All Dates
+        </option>
+
+        <option value="Today">
+          Today
+        </option>
+
+        <option value="This Month">
+          This Month
+        </option>
+
+      </select>
+
+
+
+      <p>
+        Date Filter: {dateFilter}
+      </p>
 
 
 
@@ -369,49 +412,63 @@ const categorySummary = useCategorySummary(transactions);
   type="text"
   placeholder="Search Transaction"
   value={search}
-  onChange={(e) => setSearch(e.target.value)}
-/>
-
-<p>Search: {search}</p>
-
-<br /><br />
-
-
-
-
-
-<select
-  value={sortBy}
-  onChange={(e) => setSortBy(e.target.value)}
->
-  <option value="default">Default</option>
-  <option value="low">Low to High</option>
-  <option value="high">High to Low</option>
-</select>
-
-<p>Sort: {sortBy}</p>
-
-<br /><br />
-
-
-
-<CategorySummary
-  categorySummary={categorySummary}
+  onChange={(e) => {
+    console.log("Typing:", e.target.value);
+    setSearch(e.target.value);
+  }}
 />
 
 
+      <p>
+        Search: {search}
+      </p>
 
 
-<CategoryChart
-  categorySummary={categorySummary}
-/>
+
+
+
+      <select
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
+      >
+
+        <option value="default">
+          Default
+        </option>
+
+        <option value="low">
+          Low to High
+        </option>
+
+        <option value="high">
+          High to Low
+        </option>
+
+      </select>
+
+
+      <p>
+        Sort: {sortBy}
+      </p>
+
+
+    </div>
+
+
+
+
+    <CategorySummary
+      categorySummary={categorySummary}
+    />
+
+
+
+    <CategoryChart
+      categorySummary={categorySummary}
+    />
 
 
   </div>
-
-
-
-
 
 );
 }

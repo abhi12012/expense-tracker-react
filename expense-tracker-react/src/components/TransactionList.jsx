@@ -17,7 +17,13 @@ function TransactionList({
 
     <div>
       {sortedTransactions.map((item) => (
-        <div key={item.id} className="transaction-card">
+
+        <div
+  key={item.id}
+  className={`transaction-card ${
+    item.isExpense ? "expense-card" : "income-card"
+  }`}
+>
 
           <p>{item.isExpense ? "🔴 Expense" : "🟢 Income"}</p>
 
