@@ -320,26 +320,37 @@ const categorySummary = useCategorySummary(transactions);
 
     <div className="stats-section">
 
-      <p>Total Transactions: {transactions.length}</p>
+  <div className="stat-card">
+    <h3>Total Transactions</h3>
+    <p>{transactions.length}</p>
+  </div>
 
-      <p>
-        Today's Transactions: {todayTransactions.length}
-      </p>
 
-      <p>
-        Today's Income: ₹{todayIncome}
-      </p>
+  <div className="stat-card">
+    <h3>Today's Transactions</h3>
+    <p>{todayTransactions.length}</p>
+  </div>
 
-      <p>
-        Today's Expense: ₹{todayExpense}
-      </p>
 
-      <p>
-        This Month Transactions: {thisMonthTransactions.length}
-      </p>
+  <div className="stat-card">
+    <h3>Today's Income</h3>
+    <p>₹{todayIncome}</p>
+  </div>
 
-    </div>
 
+  <div className="stat-card">
+    <h3>Today's Expense</h3>
+    <p>₹{todayExpense}</p>
+  </div>
+
+
+  <div className="stat-card">
+    <h3>This Month Transactions</h3>
+    <p>{thisMonthTransactions.length}</p>
+  </div>
+
+
+</div>
 
 
 
