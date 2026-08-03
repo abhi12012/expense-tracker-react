@@ -1,18 +1,105 @@
-# React + Vite
+# 💰 React Expense Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Expense Tracker application built with React that helps users manage income and expenses, track categories, and analyze spending patterns.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Add Income and Expense transactions
+- Edit transactions
+- Delete transactions
+- Search transactions
+- Filter by category
+- Filter by date
+- Sort transactions by amount
+- Dashboard with:
+  - Total Balance
+  - Total Income
+  - Total Expense
+  - Total Transactions
+- Category wise expense summary
+- Category chart visualization
+- Local Storage data persistence
+- Responsive UI design
 
-## React Compiler
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## 🛠️ Tech Stack
 
-Note: This will impact Vite dev & build performances.
+- React.js
+- JavaScript (ES6+)
+- Vite
+- React Router
+- Context API
+- Custom Hooks
+- CSS3
+- Local Storage
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ⚛️ React Concepts Used
+
+- Components
+- Props
+- State Management (useState)
+- Side Effects (useEffect)
+- Performance Optimization:
+  - useMemo
+  - useCallback
+  - React.memo
+- Context API
+- Custom Hooks
+- React Router
+
+
+## 📂 Project Structure
+
+
+
+
+
+src
+│
+├── components
+├── context
+├── hooks
+├── pages
+├── App.jsx
+├── main.jsx
+└── App.css
+
+
+
+
+
+## ▶️ How to Run Project
+
+Clone the repository:
+
+```bash
+git clone your-repository-link
+
+
+Install dependencies:
+
+npm install
+
+
+Start development server:
+npm run dev
+
+
+
+
+
+
+📸 Project Preview
+
+(Add screenshots here)
+
+🔮 Future Improvements
+Dark Mode
+Authentication
+Backend Integration
+MongoDB Database
+Advanced Analytics Dashboard
+👨‍💻 Author
+
+Abhishek Bansal
