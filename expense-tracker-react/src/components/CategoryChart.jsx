@@ -1,33 +1,45 @@
 function CategoryChart({ categorySummary }) {
   return (
-    <>
+    <div className="category-chart">
+
       <h3>Category Chart</h3>
 
-      {Object.entries(categorySummary).map(([category, total]) => (
-        <div key={category}>
-          <p>{category}</p>
 
-          <div
-            style={{
-              background:
-                category === "Food"
-                  ? "orange"
-                  : category === "Travel"
-                  ? "blue"
-                  : category === "Salary"
-                  ? "green"
-                  : "purple",
-              height: "20px",
-              width: `${total / 10}px`,
-            }}
-          ></div>
+      <div className="chart-container">
 
-          <p>₹{total}</p>
+        {Object.entries(categorySummary).map(([category, total]) => (
 
-          <br />
-        </div>
-      ))}
-    </>
+          <div 
+            key={category} 
+            className="chart-item"
+          >
+
+            <div className="chart-title">
+              <p>{category}</p>
+              <p>₹{total}</p>
+            </div>
+
+
+            <div className="bar-background">
+
+              <div
+                className="bar"
+                style={{
+                  width: `${total / 10}px`
+                }}
+              ></div>
+
+            </div>
+
+
+          </div>
+
+        ))}
+
+      </div>
+
+
+    </div>
   );
 }
 

@@ -43,13 +43,25 @@ function TransactionList({
             <strong>Date:</strong> {item.date}
           </p>
 
-          <button onClick={() => editTransaction(item)}>
-            Edit
-          </button>
 
-          <button onClick={() => contextDeleteTransaction(item.id)}>
-            Delete
-          </button>
+
+          <button
+  className="edit-btn"
+  onClick={() => editTransaction(item)}
+>
+  Edit
+</button>
+
+
+<button
+  className="delete-btn"
+  onClick={() => contextDeleteTransaction(item.id)}
+>
+  Delete
+</button>
+
+
+
 
         </div>
       ))}
