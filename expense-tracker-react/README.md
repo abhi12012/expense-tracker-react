@@ -32,9 +32,17 @@ A modern Expense Tracker application built with React that helps users manage in
 - Custom Hooks
 - CSS3
 - Local Storage
+- CSV Import and Export functionality
+- JSON Backup and Restore system
 
+- File Handling API
+- JSON Data Processing
+- CSV Data Processing
 
 ## ⚛️ React Concepts Used
+
+
+
 
 - Components
 - Props
