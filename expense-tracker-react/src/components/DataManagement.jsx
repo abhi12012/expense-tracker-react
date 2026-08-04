@@ -48,8 +48,29 @@ console.log("FILE READING STARTED");
 
   const values = row.split(",");
 
+
+  const transaction = {
+
+  id: Date.now(),
+
+  description: values[0],
+
+  amount: Number(values[1]),
+
+  category: values[2],
+
+  date: values[3],
+
+  isExpense: values[4].trim() === "true",
+
+};
+
+console.log(transaction);
+
   console.log(values);
 
+
+  
 });
 
 
