@@ -6,12 +6,16 @@ function DataManagement() {
 
 
   const { 
-    transactions, 
-    addTransaction: contextAddTransaction 
-  } = useContext(TransactionContext);
+  transactions,
+  addTransaction: contextAddTransaction,
+  restoreTransactions
+} = useContext(TransactionContext);
+
 
 
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const [backupFile, setBackupFile] = useState(null);
 
 
 
@@ -93,10 +97,25 @@ URL.revokeObjectURL(url);
     const reader = new FileReader();
 
 
+
+
+
+
     reader.onload = (event) => {
 
 
       const csvText = event.target.result;
+
+
+  const restoredTransactions = JSON.parse(jsonData);
+
+
+  
+
+
+ setTransactions(restoredTransactions);
+
+
 
 
       const lines = csvText.split("\n");
@@ -164,7 +183,7 @@ URL.revokeObjectURL(url);
 
   const jsonData = JSON.stringify(transactions);
 
-  console.log(jsonData);
+
 
 
   const blob = new Blob([jsonData], {
@@ -193,6 +212,34 @@ URL.revokeObjectURL(url);
 
 };
 
+
+
+
+
+const restoreBackup = () => {
+
+  const reader = new FileReader();
+
+
+  reader.onload = (event) => {
+
+    const jsonData = event.target.result;
+
+
+    const restoredTransactions = JSON.parse(jsonData);
+
+
+    
+
+
+    restoreTransactions(restoredTransactions);
+
+  };
+
+
+  reader.readAsText(backupFile);
+
+};
 
 
   return (
@@ -236,11 +283,27 @@ URL.revokeObjectURL(url);
   Backup Data
 </button>
 
-    <button>
-      Restore Backup
-    </button>
 
 
+
+<input
+  type="file"
+  accept=".json"
+  onChange={(e) => {
+
+    const file = e.target.files[0];
+
+    setBackupFile(file);
+
+  }}
+/>
+
+
+
+
+<button onClick={restoreBackup}>
+  Restore Backup
+</button>
   </div>
 );
 }

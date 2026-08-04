@@ -109,7 +109,11 @@ function updateTransaction(updatedTransaction) {
 }
 
 
+const restoreTransactions = (data) => {
 
+  setTransactions(data);
+
+};
 
 
 
@@ -120,6 +124,7 @@ function updateTransaction(updatedTransaction) {
   deleteTransaction,
   addTransaction,
   updateTransaction,
+  restoreTransactions,
 };
 
   return (
