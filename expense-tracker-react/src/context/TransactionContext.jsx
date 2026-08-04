@@ -82,8 +82,8 @@ function TransactionProvider({ children }) {
 
 function addTransaction(newTransaction) {
 
-  setTransactions([
-    ...transactions,
+  setTransactions((prevTransactions) => [
+    ...prevTransactions,
     newTransaction
   ]);
 

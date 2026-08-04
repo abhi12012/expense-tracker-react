@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import TransactionContext from "../context/TransactionContext";
 
 
 function DataManagement() {
 
+
+    const { addTransaction: contextAddTransaction } =
+  useContext(TransactionContext);
 
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -19,7 +23,6 @@ function DataManagement() {
 
     const reader = new FileReader();
 
-console.log("FILE READING STARTED");
 
     reader.onload = (event) => {
 
@@ -29,8 +32,7 @@ console.log("FILE READING STARTED");
       const lines = csvText.split("\n");
 
 
-      console.log(lines);
-
+     
 
 
       const header = lines[0];
@@ -39,19 +41,17 @@ console.log("FILE READING STARTED");
 
 
 
-      console.log("HEADER:", header);
-
-      console.log("DATA:", dataRows);
-
-
+      
       dataRows.forEach((row) => {
+
+        console.log("ROW:", row);
 
   const values = row.split(",");
 
 
   const transaction = {
 
-  id: Date.now(),
+ id: crypto.randomUUID(),
 
   description: values[0],
 
@@ -65,10 +65,7 @@ console.log("FILE READING STARTED");
 
 };
 
-console.log(transaction);
-
-  console.log(values);
-
+contextAddTransaction(transaction);
 
   
 });
@@ -99,12 +96,11 @@ console.log(transaction);
         accept=".csv"
         onChange={(e) => {
 
-          console.log("FILE CHANGED");
+          
 
           const file = e.target.files[0];
 
-          console.log(file);
-
+         
           setSelectedFile(file);
 
         }}
