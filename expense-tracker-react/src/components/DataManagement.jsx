@@ -17,9 +17,9 @@ function DataManagement() {
 
   const exportCSV = () => {
 
-    console.log("EXPORT BUTTON CLICKED");
+   
 
-    console.log(transactions);
+    
 
     const header = "description,amount,category,date,isExpense";
 
@@ -43,7 +43,38 @@ const csvContent = [
 ].join("\n");
 
 
-console.log(csvContent);
+
+
+
+const blob = new Blob([csvContent], {
+  type: "text/csv"
+});
+
+
+
+const url = URL.createObjectURL(blob);
+
+
+
+
+
+
+const link = document.createElement("a");
+
+link.href = url;
+
+link.download = "transactions.csv";
+
+link.style.display = "none";
+
+document.body.appendChild(link);
+
+link.click();
+
+document.body.removeChild(link);
+
+
+URL.revokeObjectURL(url);
 
   };
 
