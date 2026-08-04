@@ -158,6 +158,43 @@ URL.revokeObjectURL(url);
 
 
 
+
+
+   const backupData = () => {
+
+  const jsonData = JSON.stringify(transactions);
+
+  console.log(jsonData);
+
+
+  const blob = new Blob([jsonData], {
+    type: "application/json"
+  });
+
+
+  const url = URL.createObjectURL(blob);
+
+
+  const link = document.createElement("a");
+
+  link.href = url;
+
+  link.download = "backup.json";
+
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+
+  URL.revokeObjectURL(url);
+
+};
+
+
+
   return (
   <div className="data-management">
 
@@ -195,10 +232,9 @@ URL.revokeObjectURL(url);
     </button>
 
 
-    <button>
-      Backup Data
-    </button>
-
+    <button onClick={backupData}>
+  Backup Data
+</button>
 
     <button>
       Restore Backup
