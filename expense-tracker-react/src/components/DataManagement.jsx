@@ -11,32 +11,55 @@ function DataManagement() {
   const handleFileRead = () => {
 
 
-  
-
-
     if (!selectedFile) {
       alert("Please select a CSV file");
       return;
     }
 
 
-
     const reader = new FileReader();
 
-
+console.log("FILE READING STARTED");
 
     reader.onload = (event) => {
 
-      console.log(event.target.result);
+      const csvText = event.target.result;
+
+
+      const lines = csvText.split("\n");
+
+
+      console.log(lines);
+
+
+
+      const header = lines[0];
+
+      const dataRows = lines.slice(1);
+
+
+
+      console.log("HEADER:", header);
+
+      console.log("DATA:", dataRows);
+
+
+      dataRows.forEach((row) => {
+
+  const values = row.split(",");
+
+  console.log(values);
+
+});
+
 
     };
-
 
 
     reader.readAsText(selectedFile);
 
 
-  };
+  };   // 👈 यही missing था
 
 
 
@@ -50,21 +73,22 @@ function DataManagement() {
 
 
 
-    <input
-  type="file"
-  accept=".csv"
-  onChange={(e) => {
+      <input
+        type="file"
+        accept=".csv"
+        onChange={(e) => {
 
-    console.log("FILE CHANGED");
+          console.log("FILE CHANGED");
 
-    const file = e.target.files[0];
+          const file = e.target.files[0];
 
-    console.log(file);
+          console.log(file);
 
-    setSelectedFile(file);
+          setSelectedFile(file);
 
-  }}
-/>
+        }}
+      />
+
 
       <p>
         {selectedFile ? selectedFile.name : "No file selected"}
