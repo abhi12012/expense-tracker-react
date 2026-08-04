@@ -5,10 +5,48 @@ import TransactionContext from "../context/TransactionContext";
 function DataManagement() {
 
 
-    const { addTransaction: contextAddTransaction } =
-  useContext(TransactionContext);
+  const { 
+    transactions, 
+    addTransaction: contextAddTransaction 
+  } = useContext(TransactionContext);
+
 
   const [selectedFile, setSelectedFile] = useState(null);
+
+
+
+  const exportCSV = () => {
+
+    console.log("EXPORT BUTTON CLICKED");
+
+    console.log(transactions);
+
+    const header = "description,amount,category,date,isExpense";
+
+
+    const rows = transactions.map((transaction) => {
+
+  return [
+    transaction.description,
+    transaction.amount,
+    transaction.category,
+    transaction.date,
+    transaction.isExpense
+  ].join(",");
+
+});
+
+
+const csvContent = [
+  header,
+  ...rows
+].join("\n");
+
+
+console.log(csvContent);
+
+  };
+
 
 
 
@@ -26,121 +64,118 @@ function DataManagement() {
 
     reader.onload = (event) => {
 
+
       const csvText = event.target.result;
 
 
       const lines = csvText.split("\n");
 
 
-     
-
-
       const header = lines[0];
+
 
       const dataRows = lines.slice(1);
 
 
 
-      
       dataRows.forEach((row) => {
 
-        console.log("ROW:", row);
 
-  const values = row.split(",");
+        const values = row.split(",");
 
 
-  const transaction = {
 
- id: crypto.randomUUID(),
+        const transaction = {
 
-  description: values[0],
 
-  amount: Number(values[1]),
+          id: crypto.randomUUID(),
 
-  category: values[2],
 
-  date: values[3],
+          description: values[0],
 
-  isExpense: values[4].trim() === "true",
 
-};
+          amount: Number(values[1]),
 
-contextAddTransaction(transaction);
 
-  
-});
+          category: values[2],
+
+
+          date: values[3],
+
+
+          isExpense: values[4].trim() === "true",
+
+
+        };
+
+
+
+        contextAddTransaction(transaction);
+
+
+      });
 
 
     };
 
 
+
     reader.readAsText(selectedFile);
 
 
-  };   // 👈 यही missing था
+  };
 
 
 
   return (
-    <div className="data-management">
+  <div className="data-management">
+
+    <h2>Data Management</h2>
+
+    <h3>File Input Working</h3>
 
 
-      <h2>Data Management</h2>
+    <input
+      type="file"
+      accept=".csv"
+      onChange={(e) => {
 
-      <h3>File Input Working</h3>
+        const file = e.target.files[0];
 
+        setSelectedFile(file);
 
-
-      <input
-        type="file"
-        accept=".csv"
-        onChange={(e) => {
-
-          
-
-          const file = e.target.files[0];
-
-         
-          setSelectedFile(file);
-
-        }}
-      />
+      }}
+    />
 
 
-      <p>
-        {selectedFile ? selectedFile.name : "No file selected"}
-      </p>
+    <p>
+      {selectedFile ? selectedFile.name : "No file selected"}
+    </p>
 
 
 
-
-      <button onClick={handleFileRead}>
-        Import CSV
-      </button>
-
+    <button onClick={handleFileRead}>
+      Import CSV
+    </button>
 
 
-
-      <button>
-        Export CSV
-      </button>
-
+    <button onClick={exportCSV}>
+      Export CSV
+    </button>
 
 
-      <button>
-        Backup Data
-      </button>
+    <button>
+      Backup Data
+    </button>
 
 
-
-      <button>
-        Restore Backup
-      </button>
-
+    <button>
+      Restore Backup
+    </button>
 
 
-    </div>
-  );
+  </div>
+);
 }
 
 
