@@ -1,3 +1,5 @@
+import DataManagement from "../components/DataManagement";
+
 import TransactionContext from "../context/TransactionContext";
 
 
@@ -315,6 +317,11 @@ const categorySummary = useCategorySummary(transactions);
       sortedTransactions={sortedTransactions}
       editTransaction={editTransaction}
     />
+
+
+
+    <DataManagement />
+
 
 
 
