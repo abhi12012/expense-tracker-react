@@ -66,7 +66,11 @@ const {
     const descriptionRef = useRef();
 
 
-    
+    const [errors, setErrors] = useState({
+  description: "",
+  amount: "",
+  date: "",
+});
 
 
 
@@ -93,11 +97,15 @@ const {
 
 const addTransaction = useCallback(() => {
 
-  // Validation
-  if (description.trim() === "" || amount <= 0) {
-    alert("Please enter description and amount.");
-    return;
-  }
+  if (description.trim() === "") {
+
+  setErrors({
+    ...errors,
+    description: "Description is required"
+  });
+
+  return;
+}
 
 
   // Edit mode
@@ -309,6 +317,8 @@ const categorySummary = useCategorySummary(transactions);
       addTransaction={addTransaction}
 
       editingId={editingId}
+
+      errors={errors}
 
       descriptionRef={descriptionRef}
     />

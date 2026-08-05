@@ -14,12 +14,14 @@ setIsExpense,
 addTransaction,
   editingId,
   descriptionRef,
+  errors,
 
 
 }) {
 
 
   function handleSubmit(event) {
+    event.preventDefault();
 
   }
 
@@ -45,6 +47,11 @@ addTransaction,
   value={description}
   onChange={(e) => setDescription(e.target.value)}
 />
+<div style={{ color: "red" }}>
+  {errors.description}
+</div>
+
+
 
 </div>
 
