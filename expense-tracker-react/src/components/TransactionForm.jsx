@@ -18,11 +18,19 @@ addTransaction,
 
 }) {
 
+
+  function handleSubmit(event) {
+
+  }
+
   
   return (
 
     
-    <>
+    <form onSubmit={handleSubmit}>
+
+
+
       <h2>Transaction Form</h2>
 
 
@@ -120,7 +128,7 @@ addTransaction,
 
 
 
-    </>
+   </form>
 
 
   );
