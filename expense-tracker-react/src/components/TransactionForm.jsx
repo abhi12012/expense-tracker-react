@@ -15,6 +15,7 @@ addTransaction,
   editingId,
   descriptionRef,
   errors,
+  setErrors,
 
 
 }) {
@@ -45,7 +46,16 @@ addTransaction,
   type="text"
   placeholder="Description"
   value={description}
-  onChange={(e) => setDescription(e.target.value)}
+ onChange={(e) => {
+
+  setDescription(e.target.value);
+
+  setErrors({
+    ...errors,
+    description: "",
+  });
+
+}}
 />
 <div style={{ color: "red" }}>
   {errors.description}
@@ -65,8 +75,21 @@ addTransaction,
   type="number"
   placeholder="Amount"
   value={amount}
-  onChange={(e) => setAmount(Number(e.target.value))}
+ onChange={(e) => {
+
+  setAmount(Number(e.target.value));
+
+  setErrors({
+    ...errors,
+    amount: "",
+  });
+
+}}
 />
+
+<div style={{ color: "red" }}>
+  {errors.amount}
+</div>
 </div>
 
 

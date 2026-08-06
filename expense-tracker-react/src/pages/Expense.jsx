@@ -108,6 +108,19 @@ const addTransaction = useCallback(() => {
 }
 
 
+
+if (amount <= 0) {
+
+  setErrors({
+    ...errors,
+    amount: "Amount must be greater than 0"
+  });
+
+  return;
+}
+
+
+
   // Edit mode
   if (editingId !== null) {
 
@@ -182,7 +195,8 @@ const updateTransaction = useCallback(() => {
   category,
   date,
   contextUpdateTransaction,
-  clearForm
+  clearForm,
+  errors,
 ]);
 
 
@@ -320,7 +334,11 @@ const categorySummary = useCategorySummary(transactions);
 
       errors={errors}
 
+      setErrors={setErrors}
+
       descriptionRef={descriptionRef}
+
+      
     />
 
 
